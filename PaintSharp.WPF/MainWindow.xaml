@@ -1,0 +1,111 @@
+﻿<Window x:Class="PaintSharp.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PaintSharp.WPF"
+        xmlns:cc="clr-namespace:PaintSharp.WPF.Custom_Controls"
+        xmlns:extensions="clr-namespace:PaintSharp.WPF.Control_Extensions"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        Title="MainWindow" Height="450" Width="800" 
+        Background="{StaticResource PrimaryBrush1}"
+        Foreground="White"
+        FontSize="20"
+        FontFamily="/Resources/Fonts/#Be Vietnam Pro Medium">
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="45"
+                      GlassFrameThickness="31"
+                      UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+    
+    <Grid>
+        
+        <!--#region TRIGGERS FOR MARGIN ON MAXIMIZED WINDOW-->
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+                             Value="Maximized">
+                        <Setter Property="Margin" Value="7"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+                             Value="Normal">
+                        <Setter Property="Margin" Value="0"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+        <!--#endregion-->
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--#region WINDOW CHROME -->
+        <Grid Background="{StaticResource SecondaryBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--   CHROME HEADER   -->
+            
+            <Path Fill="White"
+                  Data="{StaticResource Pen_Icon}" 
+                  VerticalAlignment="Center"
+                  Margin="15,0,0,0"
+                  Height="30"
+                  Stretch="Uniform"/>
+
+            <TextBlock Grid.Column="1" 
+                       Text="Paint#"
+                       Margin="10,0,0,0"
+                       VerticalAlignment="Center"/>
+            
+            <!--   CHROME BUTTONS   -->
+            
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Grid.Column="2">
+                <Button Style="{StaticResource ChromeButton}" 
+                        x:Name="MinimizeButton"
+                        extensions:SvgButtonExtension.SvgPath="{StaticResource Minimize_Icon}"
+                        Width="30"
+                        Height="30"
+                        WindowChrome.IsHitTestVisibleInChrome="True"
+                        Click="MinimizeButton_Click"/>
+                <Button Style="{StaticResource ChromeButton}" 
+                        x:Name="MaximizeButton"
+                        extensions:SvgButtonExtension.SvgPath="{StaticResource Maximize_Icon}"
+                        Margin="10,0,0,0"
+                        Width="30"
+                        Height="30"
+                        WindowChrome.IsHitTestVisibleInChrome="True"
+                        Click="MaximizeButton_Click"/>
+                <Button Style="{StaticResource ChromeButton}" 
+                        x:Name="CloseButton"
+                        extensions:SvgButtonExtension.SvgPath="{StaticResource Close_Icon}"
+                        Margin="10,0,10,0"
+                        Width="30"
+                        Height="30"
+                        WindowChrome.IsHitTestVisibleInChrome="True"
+                        Click="CloseButton_Click"/>
+            </StackPanel>
+            
+        </Grid>
+        <!--#endregion-->
+
+        <Grid Name="MainCanvas" 
+                  Grid.Row="1"
+                  Background="Transparent"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        </Grid>
+    </Grid>
+    
+</Window>

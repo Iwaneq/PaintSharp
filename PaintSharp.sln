@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaintSharp.WPF", "PaintSharp.WPF\PaintSharp.WPF.csproj", "{4F6CAD8B-9C02-4BC2-B9AC-2FFDC1DA39FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaintSharp.Core", "PaintSharp.Core\PaintSharp.Core.csproj", "{8D03514A-C826-4C52-B47D-DE276616C7FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenControls.Wpf.DockManager", "..\OpenControls.Wpf\OpenControls.Wpf.DockManager\OpenControls.Wpf.DockManager.csproj", "{C4D43E50-84B0-47FF-888E-7C8351368BD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F6CAD8B-9C02-4BC2-B9AC-2FFDC1DA39FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F6CAD8B-9C02-4BC2-B9AC-2FFDC1DA39FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F6CAD8B-9C02-4BC2-B9AC-2FFDC1DA39FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F6CAD8B-9C02-4BC2-B9AC-2FFDC1DA39FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D03514A-C826-4C52-B47D-DE276616C7FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D03514A-C826-4C52-B47D-DE276616C7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D03514A-C826-4C52-B47D-DE276616C7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D03514A-C826-4C52-B47D-DE276616C7FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D43E50-84B0-47FF-888E-7C8351368BD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D43E50-84B0-47FF-888E-7C8351368BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D43E50-84B0-47FF-888E-7C8351368BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D43E50-84B0-47FF-888E-7C8351368BD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BBC1C616-0B3F-403B-A172-E1FFB91DBDDA}
+	EndGlobalSection
+EndGlobal
