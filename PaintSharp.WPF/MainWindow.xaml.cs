@@ -1,4 +1,5 @@
-﻿using PaintSharp.WPF.Custom_Controls;
+﻿using PaintSharp.Core.ViewModels;
+using PaintSharp.WPF.Custom_Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace PaintSharp.WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainViewModel();
 
             AddLayer();
         }

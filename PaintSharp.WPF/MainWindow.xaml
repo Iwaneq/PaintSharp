@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PaintSharp.WPF"
         xmlns:cc="clr-namespace:PaintSharp.WPF.Custom_Controls"
         xmlns:extensions="clr-namespace:PaintSharp.WPF.Control_Extensions"
+        xmlns:view="clr-namespace:PaintSharp.WPF.Views"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="CanResize"
@@ -100,11 +101,28 @@
         </Grid>
         <!--#endregion-->
 
-        <Grid Name="MainCanvas" 
-                  Grid.Row="1"
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <view:ToolBarView DataContext="{Binding ToolBarViewModel}"/>
+
+            <GridSplitter Grid.Column="0" Width="2"/>
+
+            <Grid Name="MainCanvas" 
+                  Grid.Column="1"
                   Background="Transparent"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
+            </Grid>
+            
+            <GridSplitter Grid.Column="1" Width="10"/>
+
+            <TextBlock Grid.Column="2" Text="TEST" FontSize="120"/>
+            
         </Grid>
     </Grid>
     
