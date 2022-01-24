@@ -21,9 +21,9 @@ namespace PaintSharp.Core.ViewModels
 
         #region Constructor / Setup
 
-        public MainViewModel()
+        public MainViewModel(ToolBarViewModel toolBarViewModel)
         {
-            ToolBarViewModel = new ToolBarViewModel();
+            ToolBarViewModel = toolBarViewModel;
         }
 
         #endregion

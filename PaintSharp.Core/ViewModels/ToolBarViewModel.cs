@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaintSharp.Core.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace PaintSharp.Core.ViewModels
 {
     public class ToolBarViewModel : BaseViewModel
     {
+        private readonly IToolStateChangerService _toolStateChanger;
+
         private Color _toolBrush;
         public Color ToolBrush
         {
@@ -17,11 +20,14 @@ namespace PaintSharp.Core.ViewModels
             {
                 _toolBrush = value; 
                 OnPropertyChanged(nameof(ToolBrush));
+                _toolStateChanger.ChangeBrushColor(ToolBrush);
             }
         }
 
-        public ToolBarViewModel()
+        public ToolBarViewModel(IToolStateChangerService toolStateChanger)
         {
+            _toolStateChanger = toolStateChanger;
+
             ToolBrush = Colors.Blue;
         }
     }

@@ -26,8 +26,6 @@ namespace PaintSharp.WPF
         {
             InitializeComponent();
 
-            DataContext = new MainViewModel();
-
             AddLayer();
         }
 
