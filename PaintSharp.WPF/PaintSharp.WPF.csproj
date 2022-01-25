@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
-    <PackageReference Include="PropertyTools.Wpf" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>

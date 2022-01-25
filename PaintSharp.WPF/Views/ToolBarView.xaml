@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PaintSharp.WPF.Views"
-             xmlns:picker="http://propertytools.org/wpf"
+             xmlns:dir="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="300"
              Background="{StaticResource PrimaryBrush2}"
@@ -31,9 +31,15 @@
                    Grid.Column="1"
                    Grid.Row="1"/>
 
-        <picker:ColorPicker SelectedColor="{Binding ToolBrush}"
-                            Grid.Column="1"
-                            Grid.Row="2"/>
+        <TextBlock Text="Color:"
+                   FontSize="18"
+                   Grid.Column="1"
+                   Grid.Row="3"/>
+
+        <dir:ColorPicker Grid.Column="1"
+                         Grid.Row="4"
+                         SelectedColor="{Binding ToolBrush}">
+        </dir:ColorPicker>
 
     </Grid>
 </UserControl>

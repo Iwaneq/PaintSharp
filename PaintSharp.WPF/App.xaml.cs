@@ -3,7 +3,6 @@ using Microsoft.Extensions.Hosting;
 using PaintSharp.Core.Services;
 using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.ViewModels;
-using PaintSharp.WPF.HostBuilders;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
