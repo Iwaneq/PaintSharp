@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Style/Colors.xaml"/>
                 <ResourceDictionary Source="Style/ColorPicker.xaml" />
                 <ResourceDictionary Source="Style/Buttons.xaml"/>
+                <ResourceDictionary Source="Style/TextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

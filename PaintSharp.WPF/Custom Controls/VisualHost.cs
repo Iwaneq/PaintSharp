@@ -47,7 +47,6 @@ namespace PaintSharp.WPF.Custom_Controls
         void VisualHost_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ToolState.IsLeftButtonPressed = true;
-
         }
 
         void VisualHost_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -64,7 +63,7 @@ namespace PaintSharp.WPF.Custom_Controls
 
                 if (IsMouseInBounds(e))
                 {
-                    DrawPoint(pt);
+                    DrawPoint(new Point(pt.X - ToolState.BrushSize.Width / 2, pt.Y - ToolState.BrushSize.Height / 2));
                 }
             }
         }
@@ -74,8 +73,7 @@ namespace PaintSharp.WPF.Custom_Controls
             var drawingVisual = new DrawingVisual();
             using(DrawingContext drawingContext = drawingVisual.RenderOpen())
             {
-                Rect rect = new Rect(pt, ToolState.BrushSize);
-                drawingContext.DrawRoundedRectangle(ToolState.BrushColor, null, rect, ToolState.BrushSize.Width, ToolState.BrushSize.Height);
+                ToolState.DrawDelegate(pt, drawingContext);
             }
 
             _visuals.Add(drawingVisual);
@@ -84,7 +82,7 @@ namespace PaintSharp.WPF.Custom_Controls
         private bool IsMouseInBounds(MouseEventArgs e)
         {
             var client = (FrameworkElement)this;
-            Rect bounds = new Rect(0, 0, client.ActualWidth - ToolState.BrushSize.Width, client.ActualHeight - ToolState.BrushSize.Height);
+            Rect bounds = new Rect(ToolState.BrushSize.Width/2, ToolState.BrushSize.Height/2, client.ActualWidth - ToolState.BrushSize.Width, client.ActualHeight - ToolState.BrushSize.Height);
             return bounds.Contains(e.GetPosition(this));
         }
 

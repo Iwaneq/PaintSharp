@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PaintSharp.WPF.Views"
              xmlns:dir="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
+             xmlns:tool="clr-namespace:PaintSharp.WPF.Views.Tools"
+             xmlns:extensions="clr-namespace:PaintSharp.WPF.Control_Extensions"
+             xmlns:state="clr-namespace:PaintSharp.Core.State;assembly=PaintSharp.Core"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="300"
              Background="{StaticResource PrimaryBrush2}"
@@ -31,15 +34,53 @@
                    Grid.Column="1"
                    Grid.Row="1"/>
 
+        <Grid Grid.Column="1" 
+              Grid.Row="2"
+              Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource DarkToolTypeButton}"
+                    Width="25"
+                    Height="25"
+                    extensions:SvgButtonExtension.SvgPath="{StaticResource Pen_Icon2}"
+                    Command="{Binding ChangeToolCommand}"
+                    CommandParameter="{x:Static state:ToolType.CirclePen}"/>
+
+            <Button Style="{StaticResource DarkToolTypeButton}"
+                    Width="25"
+                    Height="25"
+                    Grid.Column="1"
+                    extensions:SvgButtonExtension.SvgPath="{StaticResource Eraser_Icon}"
+                    Command="{Binding ChangeToolCommand}"
+                    CommandParameter="{x:Static state:ToolType.Eraser}"/>
+            
+        </Grid>
+
         <TextBlock Text="Color:"
                    FontSize="18"
                    Grid.Column="1"
-                   Grid.Row="3"/>
+                   Grid.Row="3"
+                   Margin="0,15,0,0"/>
 
         <dir:ColorPicker Grid.Column="1"
                          Grid.Row="4"
-                         SelectedColor="{Binding ToolBrush}">
+                         SelectedColor="{Binding ToolBrush}"
+                         Margin="0,10,0,0">
         </dir:ColorPicker>
+
+        <TextBlock Text="Options:"
+                   FontSize="15"
+                   Grid.Column="1"
+                   Grid.Row="5"
+                   Margin="0,15,0,0"/>
+
+        <tool:ToolOptionsView Grid.Column="1"
+                              Grid.Row="6"
+                              DataContext="{Binding ToolOptionsViewModel}"
+                              Margin="0,10,0,0"/>
 
     </Grid>
 </UserControl>

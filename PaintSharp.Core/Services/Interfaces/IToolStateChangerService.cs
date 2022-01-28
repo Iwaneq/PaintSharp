@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaintSharp.Core.State;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,7 @@ namespace PaintSharp.Core.Services.Interfaces
     public interface IToolStateChangerService
     {
         void ChangeBrushColor(Color color);
+        void ChangeToolSize(int width, int height);
+        void ChangeToolType(ToolType toolType);
     }
 }

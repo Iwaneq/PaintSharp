@@ -1,4 +1,6 @@
-﻿using PaintSharp.Core.Services.Interfaces;
+﻿using PaintSharp.Core.Commands;
+using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.ViewModels.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,18 @@ namespace PaintSharp.Core.ViewModels
     {
         private readonly IToolStateChangerService _toolStateChanger;
 
+        private BaseToolOptionsViewModel _toolOptionsViewModel;
+        public BaseToolOptionsViewModel ToolOptionsViewModel
+        {
+            get { return _toolOptionsViewModel; }
+            set 
+            {
+                _toolOptionsViewModel = value; 
+                OnPropertyChanged(nameof(ToolOptionsViewModel));
+            }
+        }
+
+
         private Color _toolBrush;
         public Color ToolBrush
         {
@@ -24,11 +38,20 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
-        public ToolBarViewModel(IToolStateChangerService toolStateChanger)
+        public ChangeToolTypeCommand ChangeToolCommand { get; set; }
+
+        #region Constructor / Setup
+
+        public ToolBarViewModel(IToolStateChangerService toolStateChanger, PenOptionsViewModel penOptionsViewModel)
         {
             _toolStateChanger = toolStateChanger;
+            _toolOptionsViewModel = penOptionsViewModel;
+
+            ChangeToolCommand = new ChangeToolTypeCommand(toolStateChanger);
 
             ToolBrush = Colors.Blue;
-        }
+        } 
+
+        #endregion
     }
 }

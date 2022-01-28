@@ -24,5 +24,51 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style  TargetType="Button" x:Key="LightToolTypeButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Name="mainGrid" 
+                          Background="{StaticResource PrimaryBrush1}">
+                        <Path Data="{TemplateBinding extensions:SvgButtonExtension.SvgPath}"
+                              Margin="5"
+                              Fill="White"
+                              Stretch="Uniform"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="mainGrid" Property="Background" Value="{StaticResource PrimaryBrush2}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style  TargetType="Button" x:Key="DarkToolTypeButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Name="mainGrid" 
+                          Background="{StaticResource SecondaryBrush}">
+                        <Path Data="{TemplateBinding extensions:SvgButtonExtension.SvgPath}"
+                              Margin="5"
+                              Fill="White"
+                              Stretch="Uniform"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="mainGrid" Property="Background" Value="{StaticResource ActiveBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

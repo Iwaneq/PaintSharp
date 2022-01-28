@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Hosting;
 using PaintSharp.Core.Services;
 using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.State.ToolStateHelpers;
 using PaintSharp.Core.ViewModels;
+using PaintSharp.Core.ViewModels.Tools;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -33,7 +35,11 @@ namespace PaintSharp.WPF
         {
             IServiceCollection services = new ServiceCollection();
 
+            services.AddSingleton<IDrawDelegatesHelper, DrawDelegatesHelper>();
+
             services.AddSingleton<IToolStateChangerService, ToolStateChangerService>();
+
+            services.AddSingleton<PenOptionsViewModel>();
 
             services.AddSingleton<ToolBarViewModel>();
             services.AddSingleton<MainViewModel>();
