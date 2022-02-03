@@ -32,4 +32,8 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Custom Controls\" />
+  </ItemGroup>
+
 </Project>

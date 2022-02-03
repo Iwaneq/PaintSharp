@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PaintSharp.WPF"
-        xmlns:cc="clr-namespace:PaintSharp.WPF.Custom_Controls"
+        xmlns:cc="clr-namespace:PaintSharp.WPF.Views.Layers"
         xmlns:extensions="clr-namespace:PaintSharp.WPF.Control_Extensions"
         xmlns:view="clr-namespace:PaintSharp.WPF.Views"
+        xmlns:state="clr-namespace:PaintSharp.Core.State;assembly=PaintSharp.Core"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="CanResize"
@@ -112,14 +113,22 @@
 
             <GridSplitter Grid.Column="0" Width="2"/>
 
-            <Grid Name="MainCanvas" 
-                  Grid.Column="1"
+            <Grid Grid.Column="1"
                   Background="Transparent"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
+                <ItemsControl Name="MainCanvas" 
+                              Width="{x:Static state:CanvasState.CanvasWidth}" 
+                              Height="{x:Static state:CanvasState.CanvasHeight}"
+                              ItemsSource="{Binding Layers}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl> 
             </Grid>
             
-            <GridSplitter Grid.Column="1" Width="10"/>
+            <GridSplitter Grid.Column="1" Width="2"/>
 
             <TextBlock Grid.Column="2" Text="TEST" FontSize="120"/>
             

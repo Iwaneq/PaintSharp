@@ -55,7 +55,7 @@
                     Grid.Column="1"
                     extensions:SvgButtonExtension.SvgPath="{StaticResource Eraser_Icon}"
                     Command="{Binding ChangeToolCommand}"
-                    CommandParameter="{x:Static state:ToolType.Eraser}"/>
+                    CommandParameter="{x:Static state:ToolType.CircleEraser}"/>
             
         </Grid>
 

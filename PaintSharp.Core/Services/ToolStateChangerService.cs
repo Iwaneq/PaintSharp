@@ -26,7 +26,7 @@ namespace PaintSharp.Core.Services
 
         public void ChangeBrushColor(Color color)
         {
-            ToolState.BrushColor = new SolidColorBrush(color);
+            ToolState.BrushColor = color;
         }
 
         public void ChangeToolSize(int width, int height)

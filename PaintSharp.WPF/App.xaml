@@ -1,7 +1,9 @@
 ﻿<Application x:Class="PaintSharp.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PaintSharp.WPF">
+             xmlns:local="clr-namespace:PaintSharp.WPF"
+             xmlns:layers="clr-namespace:PaintSharp.Core.ViewModels.Layers;assembly=PaintSharp.Core"
+             xmlns:layerViews="clr-namespace:PaintSharp.WPF.Views.Layers">
     <Application.Resources>
 
         <ResourceDictionary>
@@ -12,6 +14,13 @@
                 <ResourceDictionary Source="Style/Buttons.xaml"/>
                 <ResourceDictionary Source="Style/TextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type layers:LayerViewModel}">
+                <layerViews:LayerView LeftButtonDownCommand="{Binding LeftButtonDownCommand}"
+                             LeftButtonUpCommand="{Binding LeftButtonUpCommand}"
+                             MouseDrawCommand="{Binding MouseDrawCommand}"/>
+            </DataTemplate>
+
         </ResourceDictionary>
 
     </Application.Resources>

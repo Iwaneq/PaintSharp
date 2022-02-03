@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace PaintSharp.Core.State.ToolStateHelpers
 {
@@ -20,29 +21,47 @@ namespace PaintSharp.Core.State.ToolStateHelpers
                 case ToolType.RectPen:
                     ToolState.DrawDelegate = new DrawDelegate(DrawRect);
                     break;
-                case ToolType.Eraser:
-                    ToolState.DrawDelegate = new DrawDelegate(Erase);
+                case ToolType.CircleEraser:
+                    ToolState.DrawDelegate = new DrawDelegate(CircleErase);
                     break;
             }
         }
 
         #region Draw Delegates
 
-        private void DrawCircle(Point pt, DrawingContext context)
+        private void DrawCircle(Point pt, WriteableBitmap writeableBitmap)
         {
-            Rect rect = new Rect(pt, ToolState.BrushSize);
-            context.DrawRoundedRectangle(ToolState.BrushColor, null, rect, ToolState.BrushSize.Width, ToolState.BrushSize.Height);
+            using (writeableBitmap.GetBitmapContext())
+            {
+                writeableBitmap.FillEllipseCentered(((int)pt.X),
+                    ((int)pt.Y), 
+                    ((int)ToolState.BrushSize.Width),
+                    ((int)ToolState.BrushSize.Height),
+                    ToolState.BrushColor);
+            }
         }
-        private void DrawRect(Point pt, DrawingContext context)
+        private void DrawRect(Point pt, WriteableBitmap writeableBitmap)
         {
-            Rect rect = new Rect(pt, ToolState.BrushSize);
-            context.DrawRectangle(ToolState.BrushColor, null, rect);
+            using (writeableBitmap.GetBitmapContext())
+            {
+                writeableBitmap.FillRectangle((int)pt.X - ((int)ToolState.BrushSize.Width / 2),
+                    (int)pt.Y - ((int)ToolState.BrushSize.Height / 2),
+                    ((int)pt.X) + ((int)ToolState.BrushSize.Width ),
+                    ((int)pt.Y) + ((int)ToolState.BrushSize.Height ),
+                    ToolState.BrushColor);
+            }
         }
 
-        private void Erase(Point pt, DrawingContext context)
+        private void CircleErase(Point pt, WriteableBitmap writeableBitmap)
         {
-            Rect rect = new Rect(pt, ToolState.BrushSize);
-            context.DrawRoundedRectangle(new SolidColorBrush(Colors.Transparent), null, rect, ToolState.BrushSize.Width, ToolState.BrushSize.Height);
+            using (writeableBitmap.GetBitmapContext())
+            {
+                writeableBitmap.FillEllipseCentered(((int)pt.X),
+                    ((int)pt.Y),
+                    ((int)ToolState.BrushSize.Width),
+                    ((int)ToolState.BrushSize.Height),
+                    Colors.Transparent);
+            }
         }
 
         #endregion

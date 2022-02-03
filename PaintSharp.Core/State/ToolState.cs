@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace PaintSharp.Core.State
 {
@@ -13,10 +14,11 @@ namespace PaintSharp.Core.State
     {
         CirclePen,
         RectPen,
-        Eraser
+        CircleEraser,
+        RectEraser
     }
 
-    public delegate void DrawDelegate(Point pt, DrawingContext context);
+    public delegate void DrawDelegate(Point pt, WriteableBitmap writeableBitmap);
 
     public static class ToolState
     {
@@ -24,8 +26,8 @@ namespace PaintSharp.Core.State
         public static DrawDelegate DrawDelegate { get; set; }
 
 
-        private static Brush _brushColor = Brushes.Black;
-        public static Brush BrushColor
+        private static Color _brushColor = Colors.Black;
+        public static Color BrushColor
         {
             get { return _brushColor; }
             set { _brushColor = value; }

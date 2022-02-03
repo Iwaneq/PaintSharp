@@ -1,5 +1,4 @@
 ﻿using PaintSharp.Core.ViewModels;
-using PaintSharp.WPF.Custom_Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,18 +24,6 @@ namespace PaintSharp.WPF
         public MainWindow()
         {
             InitializeComponent();
-
-            AddLayer();
-        }
-
-        private void AddLayer()
-        {
-            var layer = new LayerControl();
-            layer.Height = 300;
-            layer.Width = 300;
-
-            MainCanvas.Children.Add(layer);
-            layer.Focus();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
