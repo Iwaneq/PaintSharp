@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PaintSharp.Core.Factories;
+using PaintSharp.Core.Navigation;
+using PaintSharp.Core.Navigation.Interfaces;
 using PaintSharp.Core.Services;
 using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.State.ToolStateHelpers;
@@ -40,6 +43,10 @@ namespace PaintSharp.WPF
             services.AddSingleton<IToolStateChangerService, ToolStateChangerService>();
 
             services.AddSingleton<PenOptionsViewModel>();
+            services.AddSingleton<EraserOptionsViewModel>();
+
+            services.AddSingleton<ToolOptionsViewModelFactory>();
+            services.AddSingleton<IToolOptionsNavigator, ToolOptionsNavigator>();
 
             services.AddSingleton<ToolBarViewModel>();
             services.AddSingleton<MainViewModel>();

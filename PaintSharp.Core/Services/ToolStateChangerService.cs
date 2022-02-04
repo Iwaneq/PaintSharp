@@ -36,7 +36,13 @@ namespace PaintSharp.Core.Services
 
         public void ChangeToolType(ToolType toolType)
         {
-            _drawDelegatesHelper.ChangeDrawDelegate(toolType);
+            _drawDelegatesHelper.ChangeTool(toolType);
+        }
+
+        public void ChangeToolShape(ToolShape toolShape, ToolType toolType)
+        {
+            ToolState.ToolShape = toolShape;
+            _drawDelegatesHelper.ChangeTool(toolType);
         }
     }
 }

@@ -6,18 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 
 namespace PaintSharp.Core.ViewModels.Tools
 {
-    public class PenOptionsViewModel : BaseToolOptionsViewModel
+    public class EraserOptionsViewModel : BaseToolOptionsViewModel
     {
         public ChangeToolShapeCommand ChangeToolShapeCommand { get; set; }
 
         #region Constructor / Setup
 
-        public PenOptionsViewModel(IToolStateChangerService toolStateChanger) : base(toolStateChanger)
+        public EraserOptionsViewModel(IToolStateChangerService toolStateChanger) : base(toolStateChanger)
         {
             SetupHasOptionProperties();
 
@@ -26,7 +24,7 @@ namespace PaintSharp.Core.ViewModels.Tools
 
         private void SetupHasOptionProperties()
         {
-            ToolType = ToolType.Pen;
+            ToolType = ToolType.Eraser;
             HasSizeProperty = true;
             HasTypeProperty = true;
         }

@@ -2,6 +2,6 @@
 {
     public interface IDrawDelegatesHelper
     {
-        void ChangeDrawDelegate(ToolType toolType);
+        void ChangeTool(ToolType toolType);
     }
 }

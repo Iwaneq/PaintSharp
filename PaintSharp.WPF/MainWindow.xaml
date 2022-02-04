@@ -113,6 +113,7 @@
 
             <GridSplitter Grid.Column="0" Width="2"/>
 
+            <!--#region MAIN CANVAS -->
             <Grid Grid.Column="1"
                   Background="Transparent"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -127,6 +128,7 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl> 
             </Grid>
+            <!--#endregion-->
             
             <GridSplitter Grid.Column="1" Width="2"/>
 

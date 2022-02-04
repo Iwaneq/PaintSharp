@@ -47,7 +47,7 @@
                     Height="25"
                     extensions:SvgButtonExtension.SvgPath="{StaticResource Pen_Icon2}"
                     Command="{Binding ChangeToolCommand}"
-                    CommandParameter="{x:Static state:ToolType.CirclePen}"/>
+                    CommandParameter="{x:Static state:ToolType.Pen}"/>
 
             <Button Style="{StaticResource DarkToolTypeButton}"
                     Width="25"
@@ -55,7 +55,7 @@
                     Grid.Column="1"
                     extensions:SvgButtonExtension.SvgPath="{StaticResource Eraser_Icon}"
                     Command="{Binding ChangeToolCommand}"
-                    CommandParameter="{x:Static state:ToolType.CircleEraser}"/>
+                    CommandParameter="{x:Static state:ToolType.Eraser}"/>
             
         </Grid>
 

@@ -1,5 +1,7 @@
 ﻿using PaintSharp.Core.Commands;
+using PaintSharp.Core.Navigation.Interfaces;
 using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.State;
 using PaintSharp.Core.ViewModels.Tools;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace PaintSharp.Core.ViewModels
     public class ToolBarViewModel : BaseViewModel
     {
         private readonly IToolStateChangerService _toolStateChanger;
+        private readonly IToolOptionsNavigator _toolOptionsNavigator;
 
         private BaseToolOptionsViewModel _toolOptionsViewModel;
         public BaseToolOptionsViewModel ToolOptionsViewModel
@@ -42,15 +45,18 @@ namespace PaintSharp.Core.ViewModels
 
         #region Constructor / Setup
 
-        public ToolBarViewModel(IToolStateChangerService toolStateChanger, PenOptionsViewModel penOptionsViewModel)
+        public ToolBarViewModel(IToolStateChangerService toolStateChanger, PenOptionsViewModel penOptionsViewModel, IToolOptionsNavigator toolOptionsNavigator)
         {
             _toolStateChanger = toolStateChanger;
             _toolOptionsViewModel = penOptionsViewModel;
+            _toolOptionsNavigator = toolOptionsNavigator;
 
-            ChangeToolCommand = new ChangeToolTypeCommand(toolStateChanger);
+            ChangeToolCommand = new ChangeToolTypeCommand(toolStateChanger, toolOptionsNavigator, this);
+
+            ChangeToolCommand.Execute(ToolType.Pen);
 
             ToolBrush = Colors.Blue;
-        } 
+        }
 
         #endregion
     }

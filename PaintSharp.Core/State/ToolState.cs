@@ -12,10 +12,13 @@ namespace PaintSharp.Core.State
 {
     public enum ToolType
     {
-        CirclePen,
-        RectPen,
-        CircleEraser,
-        RectEraser
+        Pen,
+        Eraser
+    }
+    public enum ToolShape
+    {
+        Circle,
+        Rect
     }
 
     public delegate void DrawDelegate(Point pt, WriteableBitmap writeableBitmap);
@@ -24,7 +27,7 @@ namespace PaintSharp.Core.State
     {
         public static bool IsLeftButtonPressed { get; set; }
         public static DrawDelegate DrawDelegate { get; set; }
-
+        public static ToolShape ToolShape { get; set; } = ToolShape.Circle;
 
         private static Color _brushColor = Colors.Black;
         public static Color BrushColor
@@ -33,7 +36,7 @@ namespace PaintSharp.Core.State
             set { _brushColor = value; }
         }
 
-        private static Size _brushSize = new Size(5,5);
+        private static Size _brushSize = new Size(10,10);
         public static Size BrushSize
         {
             get { return _brushSize; }

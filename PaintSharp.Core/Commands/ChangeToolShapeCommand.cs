@@ -1,7 +1,5 @@
-﻿using PaintSharp.Core.Navigation.Interfaces;
-using PaintSharp.Core.Services.Interfaces;
+﻿using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.State;
-using PaintSharp.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +9,17 @@ using System.Windows.Input;
 
 namespace PaintSharp.Core.Commands
 {
-    public class ChangeToolTypeCommand : ICommand
+    public class ChangeToolShapeCommand : ICommand
     {
         private readonly IToolStateChangerService _toolStateChanger;
-        private readonly IToolOptionsNavigator _toolOptionsNavigator;
-        private readonly ToolBarViewModel _toolBar;
+        private readonly ToolType _toolType;
 
         #region Constructor / Setup
 
-        public ChangeToolTypeCommand(IToolStateChangerService toolStateChanger, IToolOptionsNavigator toolOptionsNavigator, ToolBarViewModel toolBar)
+        public ChangeToolShapeCommand(IToolStateChangerService toolStateChanger, ToolType toolType)
         {
             _toolStateChanger = toolStateChanger;
-            _toolOptionsNavigator = toolOptionsNavigator;
-            _toolBar = toolBar;
+            _toolType = toolType;
         }
 
         #endregion
@@ -41,11 +37,9 @@ namespace PaintSharp.Core.Commands
         {
             if (parameter == null) return;
 
-            ToolType type = (ToolType)parameter; 
-
-            _toolStateChanger.ChangeToolType(type);
-            _toolOptionsNavigator.Navigate(type, _toolBar);
-        }
+            ToolShape shape = (ToolShape)parameter;
+            _toolStateChanger.ChangeToolShape(shape, _toolType);
+        } 
 
         #endregion
     }
