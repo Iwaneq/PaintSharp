@@ -5,9 +5,9 @@
              xmlns:layers="clr-namespace:PaintSharp.Core.ViewModels.Layers;assembly=PaintSharp.Core"
              xmlns:layerViews="clr-namespace:PaintSharp.WPF.Views.Layers">
     <Application.Resources>
-
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/Common.xaml"/>
                 <ResourceDictionary Source="Resources/Icons.xaml"/>
                 <ResourceDictionary Source="Style/Colors.xaml"/>
                 <ResourceDictionary Source="Style/ColorPicker.xaml" />

@@ -69,30 +69,43 @@
 
         <!--#endregion-->
         
-        <!--#region PEN STYLE OPTIONS -->
+        <!--#region PEN SHAPE OPTIONS -->
 
         <Grid Grid.Row="2"
               Grid.Column="1"
               Visibility="{Binding HasTypeProperty, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            
+
+            <TextBlock Text="Pen Shape:"
+                       Grid.ColumnSpan="4"
+                       Margin="0,0,0,5"
+                       FontSize="15"/>
+
             <Button Style="{StaticResource LightToolTypeButton}"
                     Command="{Binding ChangeToolShapeCommand}"
                     CommandParameter="{x:Static state:ToolShape.Circle}"
                     extensions:SvgButtonExtension.SvgPath="{StaticResource Circle_Icon}"
                     Height="25"
-                    Width="25"/>
+                    Width="25"
+                    Grid.Row="1"
+                    Margin="5"/>
             <Button Style="{StaticResource LightToolTypeButton}" Grid.Column="1"
                     Command="{Binding ChangeToolShapeCommand}"
                     CommandParameter="{x:Static state:ToolShape.Rect}"
                     extensions:SvgButtonExtension.SvgPath="{StaticResource Rect_Icon}"
                     Height="25"
-                    Width="25"/>
+                    Width="25"
+                    Grid.Row="1"
+                    Margin="5"/>
             
         </Grid>
         

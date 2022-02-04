@@ -8,6 +8,7 @@
              xmlns:tool="clr-namespace:PaintSharp.WPF.Views.Tools"
              xmlns:extensions="clr-namespace:PaintSharp.WPF.Control_Extensions"
              xmlns:state="clr-namespace:PaintSharp.Core.State;assembly=PaintSharp.Core"
+             MouseDoubleClick="UserControl_MouseDoubleClick"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="300"
              Background="{StaticResource PrimaryBrush2}"

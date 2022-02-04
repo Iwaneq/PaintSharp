@@ -14,8 +14,7 @@
         Title="MainWindow" Height="450" Width="800" 
         Background="{StaticResource PrimaryBrush1}"
         Foreground="White"
-        FontSize="20"
-        FontFamily="/Resources/Fonts/#Be Vietnam Pro Medium">
+        FontSize="20">
     
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="45"
@@ -109,9 +108,10 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <view:ToolBarView DataContext="{Binding ToolBarViewModel}"/>
+            <view:ToolBarView DataContext="{Binding ToolBarViewModel}"
+                              Grid.Column="0"/>
 
-            <GridSplitter Grid.Column="0" Width="2"/>
+            <GridSplitter Grid.Column="0" Width="2" Panel.ZIndex="20"/>
 
             <!--#region MAIN CANVAS -->
             <Grid Grid.Column="1"

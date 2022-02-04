@@ -20,9 +20,52 @@ namespace PaintSharp.WPF.Views
     /// </summary>
     public partial class ToolBarView : UserControl
     {
+        private bool isAttached = true;
+        public Grid MainGrid { get; set; }
+        public Grid DetachedGrid { get; set; }
+        public Window DetachedWindow { get; set; }
+
         public ToolBarView()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!isAttached)
+            {
+                AttachControl();
+            }
+            else
+            {
+                MainGrid = (Grid)this.Parent;
+                DeattachControl();
+            }
+        }
+
+        private void AttachControl()
+        {
+            DetachedGrid.Children.Remove(this);
+
+            MainGrid.Children.Add(this);
+
+            DetachedWindow.Close();
+            isAttached = true;
+        }
+
+        private void DeattachControl()
+        {
+            DetachedWindow = new Window();
+            DetachedWindow.Width = ActualWidth;
+            DetachedGrid = new Grid();
+            DetachedWindow.Content = DetachedGrid;
+            MainGrid.Children.Remove(this);
+
+            DetachedGrid.Children.Add(this);
+
+            DetachedWindow.Topmost = true;
+            DetachedWindow.Show();
+            isAttached = false;
         }
     }
 }
