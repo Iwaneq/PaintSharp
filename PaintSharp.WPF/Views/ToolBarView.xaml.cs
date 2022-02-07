@@ -64,8 +64,14 @@ namespace PaintSharp.WPF.Views
             DetachedGrid.Children.Add(this);
 
             DetachedWindow.Topmost = true;
+            DetachedWindow.Closed += DetachedWindow_Closed;
             DetachedWindow.Show();
             isAttached = false;
+        }
+
+        private void DetachedWindow_Closed(object? sender, EventArgs e)
+        {
+            AttachControl();
         }
     }
 }

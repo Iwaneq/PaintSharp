@@ -102,7 +102,7 @@ namespace PaintSharp.Core.State.ToolStateHelpers
                     (int)pt.Y - ((int)ToolState.BrushSize.Height / 2),
                     ((int)pt.X) + ((int)ToolState.BrushSize.Width ),
                     ((int)pt.Y) + ((int)ToolState.BrushSize.Height ),
-                    ToolState.BrushColor);
+                    WriteableBitmapExtensions.ConvertColor(ToolState.BrushColor), true);
             }
         }
 
