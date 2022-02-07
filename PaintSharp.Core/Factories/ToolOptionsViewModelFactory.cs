@@ -12,13 +12,17 @@ namespace PaintSharp.Core.Factories
     {
         private readonly PenOptionsViewModel _penOptions;
         private readonly EraserOptionsViewModel _eraserOptions;
+        private readonly SprayOptionsViewModel _sprayOptions;
 
         #region Constructor / Setup
 
-        public ToolOptionsViewModelFactory(PenOptionsViewModel penOptionsViewModel, EraserOptionsViewModel eraserOptions)
+        public ToolOptionsViewModelFactory(PenOptionsViewModel penOptionsViewModel, 
+            EraserOptionsViewModel eraserOptions, 
+            SprayOptionsViewModel sprayOptions)
         {
             _penOptions = penOptionsViewModel;
             _eraserOptions = eraserOptions;
+            _sprayOptions = sprayOptions;
         }
 
         #endregion
@@ -31,6 +35,8 @@ namespace PaintSharp.Core.Factories
                     return _penOptions;
                 case ToolType.Eraser:
                     return _eraserOptions;
+                case ToolType.Spray:
+                    return _sprayOptions;
                 default:
                     throw new NotImplementedException();
             }

@@ -13,7 +13,8 @@ namespace PaintSharp.Core.State
     public enum ToolType
     {
         Pen,
-        Eraser
+        Eraser,
+        Spray
     }
     public enum ToolShape
     {
@@ -42,5 +43,13 @@ namespace PaintSharp.Core.State
             get { return _brushSize; }
             set { _brushSize = value; }
         }
+
+        private static int _brushRadius = 10;
+        public static int BrushRadius
+        {
+            get { return _brushRadius; }
+            set { _brushRadius = value; }
+        }
+
     }
 }

@@ -14,6 +14,7 @@ namespace PaintSharp.Core.ViewModels.Tools
         public ToolType ToolType { get; set; }
 
         public bool HasSizeProperty { get; set; } = false;
+        public bool HasRadiusProperty { get; set; } = false;
         public bool HasTypeProperty { get; set; } = false;
         public bool HasFillProperty { get; set; } = false;
         public bool HasBorderThicknessProperty { get; set; } = false;
@@ -38,6 +39,16 @@ namespace PaintSharp.Core.ViewModels.Tools
             {
                 _toolStateChanger.ChangeToolSize(ToolWidth, value);
                 OnPropertyChanged(nameof(ToolHeight));
+            }
+        }
+
+        public int ToolRadius
+        {
+            get { return ToolState.BrushRadius; }
+            set
+            {
+                _toolStateChanger.ChangeToolRadius(value);
+                OnPropertyChanged(nameof(ToolRadius));
             }
         }
 

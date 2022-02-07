@@ -12,6 +12,7 @@ namespace PaintSharp.Core.Services.Interfaces
     {
         void ChangeBrushColor(Color color);
         void ChangeToolSize(int width, int height);
+        void ChangeToolRadius(int radius);
         void ChangeToolType(ToolType toolType);
         void ChangeToolShape(ToolShape toolShape, ToolType toolType);
     }

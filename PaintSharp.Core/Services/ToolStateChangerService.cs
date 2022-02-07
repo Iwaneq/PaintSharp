@@ -34,6 +34,11 @@ namespace PaintSharp.Core.Services
             ToolState.BrushSize = new Size(width, height);
         }
 
+        public void ChangeToolRadius(int radius)
+        {
+            ToolState.BrushRadius = radius;
+        }
+
         public void ChangeToolType(ToolType toolType)
         {
             _drawDelegatesHelper.ChangeTool(toolType);

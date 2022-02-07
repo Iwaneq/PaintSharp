@@ -41,6 +41,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <Button Style="{StaticResource DarkToolTypeButton}"
@@ -57,6 +58,14 @@
                     extensions:SvgButtonExtension.SvgPath="{StaticResource Eraser_Icon}"
                     Command="{Binding ChangeToolCommand}"
                     CommandParameter="{x:Static state:ToolType.Eraser}"/>
+
+            <Button Style="{StaticResource DarkToolTypeButton}"
+                    Width="25"
+                    Height="25"
+                    Grid.Column="2"
+                    extensions:SvgButtonExtension.SvgPath="{StaticResource Spray_Icon}"
+                    Command="{Binding ChangeToolCommand}"
+                    CommandParameter="{x:Static state:ToolType.Spray}"/>
             
         </Grid>
 

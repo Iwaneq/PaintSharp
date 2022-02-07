@@ -41,6 +41,7 @@ namespace PaintSharp.Core.ViewModels.Layers
         {
             //If layer is creating without background image, it'll create blank, white WriteableBitmap as large as Canvas
             WriteableBitmap = BitmapFactory.New(((int)CanvasState.CanvasWidth), ((int)CanvasState.CanvasHeight));
+            WriteableBitmap = BitmapFactory.ConvertToPbgra32Format(WriteableBitmap);
         }
 
         #endregion

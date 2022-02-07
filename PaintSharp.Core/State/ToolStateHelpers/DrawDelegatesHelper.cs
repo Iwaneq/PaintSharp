@@ -21,6 +21,9 @@ namespace PaintSharp.Core.State.ToolStateHelpers
                 case ToolType.Eraser:
                     ChangeToEraser();
                     break;
+                case ToolType.Spray:
+                    ChangeToSpray();
+                    break;
             }
         }
 
@@ -60,6 +63,22 @@ namespace PaintSharp.Core.State.ToolStateHelpers
             }
         }
 
+        private void ChangeToSpray()
+        {
+            switch (ToolState.ToolShape)
+            {
+                case ToolShape.Circle:
+                    ToolState.DrawDelegate = new DrawDelegate(CircleSpray);
+                    break;
+                case ToolShape.Rect:
+                    ToolState.DrawDelegate = new DrawDelegate(RectSpray);
+                    break;
+                default:
+                    ToolState.DrawDelegate = new DrawDelegate(CircleSpray);
+                    break;
+            }
+        }
+
         #endregion
 
         #region Draw Delegates
@@ -72,7 +91,7 @@ namespace PaintSharp.Core.State.ToolStateHelpers
                     ((int)pt.Y), 
                     ((int)ToolState.BrushSize.Width),
                     ((int)ToolState.BrushSize.Height),
-                    ToolState.BrushColor);
+                    WriteableBitmapExtensions.ConvertColor(ToolState.BrushColor), true);
             }
         }
         private void DrawRect(Point pt, WriteableBitmap writeableBitmap)
@@ -107,6 +126,50 @@ namespace PaintSharp.Core.State.ToolStateHelpers
                     ((int)pt.X) + ((int)ToolState.BrushSize.Width),
                     ((int)pt.Y) + ((int)ToolState.BrushSize.Height),
                     Colors.Transparent);
+            }
+        }
+
+        private void CircleSpray(Point pt, WriteableBitmap writeableBitmap)
+        {
+            using (writeableBitmap.GetBitmapContext())
+            {
+                Random random = new Random();
+                Color color = ToolState.BrushColor;
+
+                int r = (int)ToolState.BrushRadius;
+                for(int x = -r; x < r; x++)
+                {
+                    int height = (int)Math.Sqrt(r * r - x * x);
+                    
+                    for(int y = -height; y < height; y++)
+                    {
+                        color.A = (byte)random.Next(0, 30);
+                        writeableBitmap.FillRectangle(((int)(x + pt.X)), ((int)(y + pt.Y)), ((int)(x + pt.X + 1)), ((int)(y + pt.Y + 1)), WriteableBitmapExtensions.ConvertColor(color), true);
+                    }
+                }
+            }
+        }
+
+        private void RectSpray(Point pt, WriteableBitmap writeableBitmap)
+        {
+            using (writeableBitmap.GetBitmapContext())
+            {
+                Random random = new Random();
+                Color color = ToolState.BrushColor;
+
+                for (int i = 0; i < ToolState.BrushRadius*2; i++)
+                {
+                    for (int j = 0; j < ToolState.BrushRadius*2; j++)
+                    {
+                        color.A = (byte)random.Next(0, 30);
+
+                        writeableBitmap.FillRectangle((int)pt.X - ((int)ToolState.BrushRadius) + i,
+                                    (int)pt.Y - ((int)ToolState.BrushRadius) + j,
+                                    (int)pt.X - ((int)ToolState.BrushRadius) + i + 1,
+                                    (int)pt.Y - ((int)ToolState.BrushRadius) + j + 1,
+                                    WriteableBitmapExtensions.ConvertColor(color), true);
+                    }
+                }
             }
         }
 
