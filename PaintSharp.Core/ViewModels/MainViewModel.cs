@@ -1,10 +1,14 @@
-﻿using PaintSharp.Core.State;
+﻿using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.State;
 using PaintSharp.Core.ViewModels.Layers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 
 namespace PaintSharp.Core.ViewModels
 {
@@ -21,13 +25,24 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
-        private List<LayerViewModel> _layers = new List<LayerViewModel>();
-        public List<LayerViewModel> Layers
+        private LayersBarViewModel _layersBarViewModel;
+        public LayersBarViewModel LayersBarViewModel
         {
-            get { return _layers; }
+            get { return _layersBarViewModel; }
             set 
             {
-                _layers = value; 
+                _layersBarViewModel = value;
+                OnPropertyChanged(nameof(LayersBarViewModel));
+            }
+        }
+
+
+        public ObservableCollection<LayerViewModel> Layers
+        {
+            get { return LayerState.Layers; }
+            set 
+            {
+                LayerState.Layers = value;
                 OnPropertyChanged(nameof(Layers));
             }
         }
@@ -35,13 +50,13 @@ namespace PaintSharp.Core.ViewModels
 
         #region Constructor / Setup
 
-        public MainViewModel(ToolBarViewModel toolBarViewModel)
+        public MainViewModel(ToolBarViewModel toolBarViewModel, LayersBarViewModel layersBarViewModel, IAddLayerService addLayerService)
         {
             ToolBarViewModel = toolBarViewModel;
+            LayersBarViewModel = layersBarViewModel;
 
-            AddLayer();
+            addLayerService.AddLayer("Background", new Size(1,1), Colors.Red);
         }
-
         #endregion
 
         #region Layers Management

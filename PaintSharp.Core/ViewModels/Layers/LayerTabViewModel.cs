@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PaintSharp.Core.ViewModels.Layers
+{
+    public class LayerTabViewModel : BaseViewModel
+    {
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set 
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        private LayerViewModel _layer;
+        public LayerViewModel Layer
+        {
+            get { return _layer; }
+            set 
+            {
+                _layer = value;
+                OnPropertyChanged(nameof(Layer));
+            }
+        }
+
+    }
+}

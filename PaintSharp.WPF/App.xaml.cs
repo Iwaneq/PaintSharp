@@ -40,6 +40,7 @@ namespace PaintSharp.WPF
 
             services.AddSingleton<IDrawDelegatesHelper, DrawDelegatesHelper>();
 
+            services.AddSingleton<IAddLayerService, AddLayerService>();
             services.AddSingleton<IToolStateChangerService, ToolStateChangerService>();
 
             services.AddSingleton<PenOptionsViewModel>();
@@ -50,6 +51,7 @@ namespace PaintSharp.WPF
             services.AddSingleton<IToolOptionsNavigator, ToolOptionsNavigator>();
 
             services.AddSingleton<ToolBarViewModel>();
+            services.AddSingleton<LayersBarViewModel>();
             services.AddSingleton<MainViewModel>();
 
             return services.BuildServiceProvider();

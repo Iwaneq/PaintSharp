@@ -1,140 +1,153 @@
-﻿<Window x:Class="PaintSharp.WPF.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PaintSharp.WPF"
-        xmlns:cc="clr-namespace:PaintSharp.WPF.Views.Layers"
-        xmlns:extensions="clr-namespace:PaintSharp.WPF.Control_Extensions"
-        xmlns:view="clr-namespace:PaintSharp.WPF.Views"
-        xmlns:state="clr-namespace:PaintSharp.Core.State;assembly=PaintSharp.Core"
-        mc:Ignorable="d"
-        WindowStyle="None"
-        ResizeMode="CanResize"
-        Title="MainWindow" Height="450" Width="800" 
-        Background="{StaticResource PrimaryBrush1}"
-        Foreground="White"
-        FontSize="20">
-    
+﻿<Window
+    x:Class="PaintSharp.WPF.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cc="clr-namespace:PaintSharp.WPF.Views.Layers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:PaintSharp.WPF.Control_Extensions"
+    xmlns:local="clr-namespace:PaintSharp.WPF"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:state="clr-namespace:PaintSharp.Core.State;assembly=PaintSharp.Core"
+    xmlns:view="clr-namespace:PaintSharp.WPF.Views"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    Background="{StaticResource PrimaryBrush1}"
+    FontSize="20"
+    Foreground="White"
+    ResizeMode="CanResize"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="45"
-                      GlassFrameThickness="31"
-                      UseAeroCaptionButtons="False"/>
+        <WindowChrome
+            CaptionHeight="45"
+            GlassFrameThickness="31"
+            UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>
-    
+
     <Grid>
-        
+
         <!--#region TRIGGERS FOR MARGIN ON MAXIMIZED WINDOW-->
         <Grid.Style>
             <Style TargetType="Grid">
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
-                             Value="Maximized">
-                        <Setter Property="Margin" Value="7"/>
+                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                        <Setter Property="Margin" Value="7" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
-                             Value="Normal">
-                        <Setter Property="Margin" Value="0"/>
+                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Normal">
+                        <Setter Property="Margin" Value="0" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
         </Grid.Style>
         <!--#endregion-->
-        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
-            <RowDefinition/>
+            <RowDefinition Height="45" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
-        <!--#region WINDOW CHROME -->
+        <!--#region WINDOW CHROME-->
         <Grid Background="{StaticResource SecondaryBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <!--   CHROME HEADER   -->
-            
-            <Path Fill="White"
-                  Data="{StaticResource Pen_Icon}" 
-                  VerticalAlignment="Center"
-                  Margin="15,0,0,0"
-                  Height="30"
-                  Stretch="Uniform"/>
+            <!--  CHROME HEADER  -->
 
-            <TextBlock Grid.Column="1" 
-                       Text="Paint#"
-                       Margin="10,0,0,0"
-                       VerticalAlignment="Center"/>
-            
-            <!--   CHROME BUTTONS   -->
-            
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right"
-                        Grid.Column="2">
-                <Button Style="{StaticResource ChromeButton}" 
-                        x:Name="MinimizeButton"
-                        extensions:SvgButtonExtension.SvgPath="{StaticResource Minimize_Icon}"
-                        Width="30"
-                        Height="30"
-                        WindowChrome.IsHitTestVisibleInChrome="True"
-                        Click="MinimizeButton_Click"/>
-                <Button Style="{StaticResource ChromeButton}" 
-                        x:Name="MaximizeButton"
-                        extensions:SvgButtonExtension.SvgPath="{StaticResource Maximize_Icon}"
-                        Margin="10,0,0,0"
-                        Width="30"
-                        Height="30"
-                        WindowChrome.IsHitTestVisibleInChrome="True"
-                        Click="MaximizeButton_Click"/>
-                <Button Style="{StaticResource ChromeButton}" 
-                        x:Name="CloseButton"
-                        extensions:SvgButtonExtension.SvgPath="{StaticResource Close_Icon}"
-                        Margin="10,0,10,0"
-                        Width="30"
-                        Height="30"
-                        WindowChrome.IsHitTestVisibleInChrome="True"
-                        Click="CloseButton_Click"/>
+            <Path
+                Height="30"
+                Margin="15,0,0,0"
+                VerticalAlignment="Center"
+                Data="{StaticResource Pen_Icon}"
+                Fill="White"
+                Stretch="Uniform" />
+
+            <TextBlock
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                VerticalAlignment="Center"
+                Text="Paint#" />
+
+            <!--  CHROME BUTTONS  -->
+
+            <StackPanel
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="MinimizeButton"
+                    Width="30"
+                    Height="30"
+                    extensions:SvgButtonExtension.SvgPath="{StaticResource Minimize_Icon}"
+                    Click="MinimizeButton_Click"
+                    Style="{StaticResource ChromeButton}"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                <Button
+                    x:Name="MaximizeButton"
+                    Width="30"
+                    Height="30"
+                    Margin="10,0,0,0"
+                    extensions:SvgButtonExtension.SvgPath="{StaticResource Maximize_Icon}"
+                    Click="MaximizeButton_Click"
+                    Style="{StaticResource ChromeButton}"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                <Button
+                    x:Name="CloseButton"
+                    Width="30"
+                    Height="30"
+                    Margin="10,0,10,0"
+                    extensions:SvgButtonExtension.SvgPath="{StaticResource Close_Icon}"
+                    Click="CloseButton_Click"
+                    Style="{StaticResource ChromeButton}"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
             </StackPanel>
-            
+
         </Grid>
         <!--#endregion-->
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <view:ToolBarView DataContext="{Binding ToolBarViewModel}"
-                              Grid.Column="0"/>
+            <view:ToolBarView Grid.Column="0" DataContext="{Binding ToolBarViewModel}" />
 
-            <GridSplitter Grid.Column="0" Width="2" Panel.ZIndex="20"/>
+            <GridSplitter
+                Grid.Column="0"
+                Width="2"
+                Panel.ZIndex="20" />
 
-            <!--#region MAIN CANVAS -->
-            <Grid Grid.Column="1"
-                  Background="Transparent"
-                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <ItemsControl Name="MainCanvas" 
-                              Width="{x:Static state:CanvasState.CanvasWidth}" 
-                              Height="{x:Static state:CanvasState.CanvasHeight}"
-                              ItemsSource="{Binding Layers}">
+            <!--#region MAIN CANVAS-->
+            <Grid
+                Grid.Column="1"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="Transparent">
+                <ItemsControl
+                    Name="MainCanvas"
+                    Width="{x:Static state:CanvasState.CanvasWidth}"
+                    Height="{x:Static state:CanvasState.CanvasHeight}"
+                    ItemsSource="{Binding Layers}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Canvas/>
+                            <Canvas />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                </ItemsControl> 
+                </ItemsControl>
             </Grid>
             <!--#endregion-->
-            
-            <GridSplitter Grid.Column="1" Width="2"/>
 
-            <TextBlock Grid.Column="2" Text="TEST" FontSize="120"/>
-            
+            <GridSplitter Grid.Column="1" Width="2" />
+
+            <view:LayersBarView Grid.Column="2" DataContext="{Binding LayersBarViewModel}" />
+
         </Grid>
     </Grid>
-    
+
 </Window>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace PaintSharp.Core.ViewModels.Layers
@@ -27,6 +28,14 @@ namespace PaintSharp.Core.ViewModels.Layers
         public LayerViewModel()
         {
             SetupWriteableBitmap();
+            SetupCommands();
+        }
+
+        public LayerViewModel(Color background)
+        {
+            SetupWriteableBitmap();
+            WriteableBitmap.Clear(background);
+
             SetupCommands();
         }
 

@@ -18,5 +18,16 @@ namespace PaintSharp.WPF.Control_Extensions
         {
             return (object)element.GetValue(SvgPathProperty);
         }
+
+
+        public static readonly DependencyProperty PaddingProperty = DependencyProperty.RegisterAttached("Padding", typeof(Thickness), typeof(SvgButtonExtension));
+        public static void SetPadding(UIElement element, Thickness value)
+        {
+            element.SetValue(PaddingProperty, value);
+        }
+        public static Thickness GetPadding(UIElement element, Thickness value)
+        {
+            return (Thickness)element.GetValue(PaddingProperty);
+        }
     }
 }
