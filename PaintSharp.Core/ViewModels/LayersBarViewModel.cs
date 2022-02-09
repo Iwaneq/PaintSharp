@@ -14,6 +14,7 @@ namespace PaintSharp.Core.ViewModels
     public class LayersBarViewModel : BaseViewModel
     {
         private IAddLayerService _addLayerService;
+        private IDeleteLayerService _deleteLayerService;
 
         public ObservableCollection<LayerTabViewModel> Layers
         {
@@ -25,13 +26,27 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
+        private LayerTabViewModel _selectedLayer;
+        public LayerTabViewModel SelectedLayer
+        {
+            get { return _selectedLayer; }
+            set 
+            {
+                _selectedLayer = value; 
+                OnPropertyChanged(nameof(SelectedLayer));
+            }
+        }
+
+
         public AddLayerCommand AddLayerCommand { get; set; }
+        public DeleteLayerCommand DeleteLayerCommand { get; set; }
 
         #region Constructor / Setup
 
-        public LayersBarViewModel(IAddLayerService addLayerService)
+        public LayersBarViewModel(IAddLayerService addLayerService, IDeleteLayerService deleteLayerService)
         {
             _addLayerService = addLayerService;
+            _deleteLayerService = deleteLayerService;
 
             SetupCommands();
         }
@@ -39,6 +54,7 @@ namespace PaintSharp.Core.ViewModels
         private void SetupCommands()
         {
             AddLayerCommand = new AddLayerCommand(_addLayerService);
+            DeleteLayerCommand = new DeleteLayerCommand(_deleteLayerService);
         }
 
         #endregion

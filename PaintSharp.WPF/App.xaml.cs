@@ -42,6 +42,7 @@ namespace PaintSharp.WPF
 
             services.AddSingleton<IChangeLayerVisibilityService, ChangeLayerVisibilityService>();
             services.AddSingleton<IAddLayerService, AddLayerService>();
+            services.AddSingleton<IDeleteLayerService, DeleteLayerService>();
             services.AddSingleton<IToolStateChangerService, ToolStateChangerService>();
 
             services.AddSingleton<PenOptionsViewModel>();
