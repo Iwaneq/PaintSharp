@@ -40,6 +40,7 @@ namespace PaintSharp.WPF
 
             services.AddSingleton<IDrawDelegatesHelper, DrawDelegatesHelper>();
 
+            services.AddSingleton<IChangeLayerVisibilityService, ChangeLayerVisibilityService>();
             services.AddSingleton<IAddLayerService, AddLayerService>();
             services.AddSingleton<IToolStateChangerService, ToolStateChangerService>();
 

@@ -13,6 +13,17 @@ namespace PaintSharp.Core.Services
 {
     public class AddLayerService : IAddLayerService
     {
+        private readonly IChangeLayerVisibilityService _changeLayerVisibilityService;
+
+        #region Constructor / Setup
+
+        public AddLayerService(IChangeLayerVisibilityService changeLayerVisibilityService)
+        {
+            _changeLayerVisibilityService = changeLayerVisibilityService;
+        }
+
+        #endregion
+
         public void AddLayer(string name, Size size, Color background)
         {
             //Create Layer of given size and with given background
@@ -20,7 +31,7 @@ namespace PaintSharp.Core.Services
             LayerState.Layers.Add(layer);
 
             //Create LayerTab and wire it to Layer
-            LayerTabViewModel layerTab = new LayerTabViewModel() 
+            LayerTabViewModel layerTab = new LayerTabViewModel(_changeLayerVisibilityService) 
             {
                 Name = name, 
                 Layer = layer 

@@ -1,25 +1,29 @@
-﻿<Application x:Class="PaintSharp.WPF.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PaintSharp.WPF"
-             xmlns:layers="clr-namespace:PaintSharp.Core.ViewModels.Layers;assembly=PaintSharp.Core"
-             xmlns:layerViews="clr-namespace:PaintSharp.WPF.Views.Layers">
+﻿<Application
+    x:Class="PaintSharp.WPF.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:layerViews="clr-namespace:PaintSharp.WPF.Views.Layers"
+    xmlns:layers="clr-namespace:PaintSharp.Core.ViewModels.Layers;assembly=PaintSharp.Core"
+    xmlns:local="clr-namespace:PaintSharp.WPF">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Style/Common.xaml"/>
-                <ResourceDictionary Source="Resources/Icons.xaml"/>
-                <ResourceDictionary Source="Style/Colors.xaml"/>
+                <ResourceDictionary Source="Style/Common.xaml" />
+                <ResourceDictionary Source="Resources/Icons.xaml" />
+                <ResourceDictionary Source="Style/Colors.xaml" />
                 <ResourceDictionary Source="Style/ColorPicker.xaml" />
-                <ResourceDictionary Source="Style/Buttons.xaml"/>
-                <ResourceDictionary Source="Style/TextBox.xaml"/>
+                <ResourceDictionary Source="Style/Buttons.xaml" />
+                <ResourceDictionary Source="Style/TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type layers:LayerViewModel}">
-                <layerViews:LayerView LeftButtonDownCommand="{Binding LeftButtonDownCommand}"
-                             LeftButtonUpCommand="{Binding LeftButtonUpCommand}"
-                             MouseDrawCommand="{Binding MouseDrawCommand}"/>
+                <layerViews:LayerView
+                    LeftButtonDownCommand="{Binding LeftButtonDownCommand}"
+                    LeftButtonUpCommand="{Binding LeftButtonUpCommand}"
+                    MouseDrawCommand="{Binding MouseDrawCommand}" />
             </DataTemplate>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         </ResourceDictionary>
 

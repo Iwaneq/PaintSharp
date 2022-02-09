@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PaintSharp.Core.Commands;
+using PaintSharp.Core.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +31,17 @@ namespace PaintSharp.Core.ViewModels.Layers
                 OnPropertyChanged(nameof(Layer));
             }
         }
+
+        public ChangeLayerVisibilityCommand ChangeLayerVisibilityCommand { get; set; }
+
+        #region Constructor / Setup
+
+        public LayerTabViewModel(IChangeLayerVisibilityService changeLayerVisibilityService)
+        {
+            ChangeLayerVisibilityCommand = new ChangeLayerVisibilityCommand(this, changeLayerVisibilityService);
+        }
+
+        #endregion
 
     }
 }
