@@ -8,6 +8,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
                 <ResourceDictionary Source="Style/Common.xaml" />
                 <ResourceDictionary Source="Resources/Icons.xaml" />
                 <ResourceDictionary Source="Style/Colors.xaml" />
@@ -23,7 +25,10 @@
                     MouseDrawCommand="{Binding MouseDrawCommand}" />
             </DataTemplate>
             <DataTemplate DataType="{x:Type layers:LayerTabViewModel}">
-                <layerViews:LayerTabView/>
+                <layerViews:LayerTabView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type layers:AddLayerMessageViewModel}">
+                <layerViews:AddLayerMessageView />
             </DataTemplate>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

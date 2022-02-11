@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
+    <PackageReference Include="HandyControl" Version="3.3.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
   </ItemGroup>

@@ -7,7 +7,9 @@ using PaintSharp.Core.Services;
 using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.State.ToolStateHelpers;
 using PaintSharp.Core.ViewModels;
+using PaintSharp.Core.ViewModels.Layers;
 using PaintSharp.Core.ViewModels.Tools;
+using PaintSharp.WPF.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -45,12 +47,16 @@ namespace PaintSharp.WPF
             services.AddSingleton<IDeleteLayerService, DeleteLayerService>();
             services.AddSingleton<IToolStateChangerService, ToolStateChangerService>();
 
+            services.AddSingleton<IOpenWindowService, OpenWindowService>();
+
             services.AddSingleton<PenOptionsViewModel>();
             services.AddSingleton<EraserOptionsViewModel>();
             services.AddSingleton<SprayOptionsViewModel>();
 
             services.AddSingleton<ToolOptionsViewModelFactory>();
             services.AddSingleton<IToolOptionsNavigator, ToolOptionsNavigator>();
+
+            services.AddSingleton<AddLayerMessageViewModel>();
 
             services.AddSingleton<ToolBarViewModel>();
             services.AddSingleton<LayersBarViewModel>();

@@ -1,5 +1,4 @@
-﻿using PaintSharp.WPF.Views.Layers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PaintSharp.WPF.Views
+namespace PaintSharp.WPF.Views.Layers
 {
     /// <summary>
-    /// Logika interakcji dla klasy LayersBarView.xaml
+    /// Logika interakcji dla klasy AddLayerMessageView.xaml
     /// </summary>
-    public partial class LayersBarView : UserControl
+    public partial class AddLayerMessageView : UserControl
     {
-        public LayersBarView()
+        public AddLayerMessageView()
         {
             InitializeComponent();
         }

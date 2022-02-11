@@ -47,7 +47,7 @@
                 HorizontalAlignment="Left"
                 extensions:SvgButtonExtension.Padding="10"
                 extensions:SvgButtonExtension.SvgPath="{StaticResource Add_Icon}"
-                Command="{Binding AddLayerCommand}"
+                Command="{Binding OpenAddLayerMessageViewCommand}"
                 Style="{StaticResource DarkSvgButton}" />
             <Button
                 Grid.Row="2"
@@ -78,7 +78,8 @@
                 BorderThickness="0"
                 ItemsSource="{Binding Layers}"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                SelectedItem="{Binding SelectedLayer}" />
+                SelectedItem="{Binding SelectedLayer}"
+                Style="{StaticResource BaseStyle}" />
         </ScrollViewer>
 
         <!--#endregion-->
