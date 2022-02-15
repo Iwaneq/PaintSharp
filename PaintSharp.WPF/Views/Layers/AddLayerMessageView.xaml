@@ -51,7 +51,8 @@
                 Margin="15,0,0,15"
                 HorizontalAlignment="Left"
                 FontSize="18"
-                Style="{StaticResource DarkTextBox}" />
+                Style="{StaticResource DarkTextBox}"
+                Text="{Binding LayerName}" />
 
             <TextBlock
                 Grid.Row="1"
@@ -72,7 +73,7 @@
                 Increment="5"
                 Maximum="100"
                 Minimum="0"
-                Value="100" />
+                Value="{Binding LayerOpacity}" />
 
             <TextBlock
                 Grid.Row="2"
@@ -87,13 +88,17 @@
                 Grid.ColumnSpan="2"
                 Width="200"
                 Margin="0,0,0,15"
-                HorizontalAlignment="Left" />
+                HorizontalAlignment="Left"
+                SelectedColor="{Binding LayerBackground}" />
 
         </Grid>
 
         <!--#endregion-->
 
-        <Button Grid.Row="2" Content="Add Layer" />
+        <Button
+            Grid.Row="2"
+            Click="Button_Click"
+            Content="Add Layer" />
 
     </Grid>
 </UserControl>

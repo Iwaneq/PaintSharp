@@ -1,4 +1,5 @@
 ﻿using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.ViewModels.Layers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,10 @@ namespace PaintSharp.Core.Commands
 
         public void Execute(object? parameter)
         {
-            _addLayerService.AddLayer("NewLayer", new Size(1, 1), Colors.Green);
+            if (parameter == null) return;
+
+            var viewModel = (AddLayerMessageViewModel)parameter;
+            _addLayerService.AddLayer(viewModel.LayerName, new Size(1, 1), viewModel.LayerBackground, ((float)viewModel.LayerOpacity)/100);
         } 
 
         #endregion

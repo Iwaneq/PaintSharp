@@ -34,6 +34,17 @@ namespace PaintSharp.Core.ViewModels.Layers
             }
         }
 
+        private float _opacity;
+        public float Opacity
+        {
+            get { return _opacity; }
+            set 
+            {
+                _opacity = value; 
+                OnPropertyChanged(nameof(Opacity));
+            }
+        }
+
 
         #region Constructor / Setup
 

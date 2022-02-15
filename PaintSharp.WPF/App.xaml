@@ -28,7 +28,7 @@
                 <layerViews:LayerTabView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type layers:AddLayerMessageViewModel}">
-                <layerViews:AddLayerMessageView />
+                <layerViews:AddLayerMessageView AddLayerCommand="{Binding AddLayerCommand}" />
             </DataTemplate>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

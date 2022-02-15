@@ -35,6 +35,7 @@ namespace PaintSharp.Core.Commands
 
         public void Execute(object? parameter)
         {
+            _addLayerMessageViewModel.ResetViewModel();
             _openWindowService.OpenWindow("Add Layer", _addLayerMessageViewModel, 400, 300);
         } 
 

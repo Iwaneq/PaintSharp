@@ -11,5 +11,6 @@ namespace PaintSharp.Core.Services.Interfaces
     public interface IAddLayerService
     {
         void AddLayer(string name, Size size, Color background);
+        void AddLayer(string name, Size size, Color background, float opacity);
     }
 }
