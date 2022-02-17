@@ -1,4 +1,5 @@
 ﻿using PaintSharp.Core.Commands;
+using PaintSharp.Core.Commands.Utils;
 using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.State;
 using PaintSharp.Core.ViewModels.Layers;
@@ -8,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PaintSharp.Core.ViewModels
 {
@@ -34,19 +37,22 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
-
         public OpenAddLayerMessageViewCommand OpenAddLayerMessageViewCommand { get; set; }
         public DeleteLayerCommand DeleteLayerCommand { get; set; }
+        public ICommand RequestCanvasSaveCommand { get; set; } 
+
+        public event Action OnCanvasSaveRequested;
 
         #region Constructor / Setup
 
         public LayersBarViewModel(IAddLayerService addLayerService,
-            IDeleteLayerService deleteLayerService, 
+            IDeleteLayerService deleteLayerService,
             IOpenWindowService openWindowService,
             AddLayerMessageViewModel addLayerMessageViewModel)
         {
             OpenAddLayerMessageViewCommand = new OpenAddLayerMessageViewCommand(openWindowService, addLayerMessageViewModel);
             DeleteLayerCommand = new DeleteLayerCommand(deleteLayerService);
+            RequestCanvasSaveCommand = new RelayCommand(() => OnCanvasSaveRequested?.Invoke());
         }
 
         #endregion

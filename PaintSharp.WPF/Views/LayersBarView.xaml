@@ -95,6 +95,7 @@
                 HorizontalAlignment="Left"
                 extensions:SvgButtonExtension.Padding="10"
                 extensions:SvgButtonExtension.SvgPath="{StaticResource Save_Icon}"
+                Command="{Binding RequestCanvasSaveCommand}"
                 Style="{StaticResource DarkSvgButton}" />
             <Button
                 Grid.Row="2"

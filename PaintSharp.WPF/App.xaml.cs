@@ -29,7 +29,7 @@ namespace PaintSharp.WPF
         {
             IServiceProvider serviceProvider = CreateServiceProvider();
 
-            Window window = new MainWindow();
+            Window window = serviceProvider.GetRequiredService<MainWindow>();
             window.DataContext = serviceProvider.GetRequiredService<MainViewModel>();
             window.Show();
 
@@ -48,6 +48,8 @@ namespace PaintSharp.WPF
             services.AddSingleton<IToolStateChangerService, ToolStateChangerService>();
 
             services.AddSingleton<IOpenWindowService, OpenWindowService>();
+            services.AddSingleton<IMessageBoxService, MessageBoxService>();
+            services.AddSingleton<ISaveCanvasService, SaveCanvasService>();
 
             services.AddSingleton<PenOptionsViewModel>();
             services.AddSingleton<EraserOptionsViewModel>();
@@ -60,6 +62,8 @@ namespace PaintSharp.WPF
 
             services.AddSingleton<ToolBarViewModel>();
             services.AddSingleton<LayersBarViewModel>();
+
+            services.AddSingleton<MainWindow>();
             services.AddSingleton<MainViewModel>();
 
             return services.BuildServiceProvider();

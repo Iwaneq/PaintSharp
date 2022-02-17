@@ -1,4 +1,5 @@
-﻿using PaintSharp.Core.ViewModels;
+﻿using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,27 @@ namespace PaintSharp.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly ISaveCanvasService _saveCanvasService;
+        public MainViewModel ViewModel 
+        {
+            get
+            {
+                return (MainViewModel)DataContext;
+            }
+        }
+
+        #region Constructor / Setup
+
+        public MainWindow(ISaveCanvasService saveCanvasService)
         {
             InitializeComponent();
-        }
+
+            _saveCanvasService = saveCanvasService;
+        } 
+
+        #endregion
+
+        #region Chrome Buttons Events
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -33,7 +51,7 @@ namespace PaintSharp.WPF
 
         private void MaximizeButton_Click(object sender, RoutedEventArgs e)
         {
-            if(WindowState == WindowState.Normal)
+            if (WindowState == WindowState.Normal)
             {
                 WindowState = WindowState.Maximized;
             }
@@ -46,6 +64,23 @@ namespace PaintSharp.WPF
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        } 
+
+        #endregion
+
+        private void Window_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ViewModel.OnCanvasSave += ViewModel_OnCanvasSave;
+        }
+
+        private void ViewModel_OnCanvasSave()
+        {
+            _saveCanvasService.SaveCanvas(MainCanvas);
+        }
+
+        ~MainWindow()
+        {
+            ViewModel.OnCanvasSave -= ViewModel_OnCanvasSave;
         }
     }
 }

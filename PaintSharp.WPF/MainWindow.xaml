@@ -13,6 +13,7 @@
     Width="800"
     Height="450"
     Background="{StaticResource PrimaryBrush1}"
+    DataContextChanged="Window_DataContextChanged"
     FontSize="20"
     Foreground="White"
     ResizeMode="CanResize"

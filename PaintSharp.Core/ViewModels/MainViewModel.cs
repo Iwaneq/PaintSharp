@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace PaintSharp.Core.ViewModels
@@ -47,6 +48,7 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
+        public event Action OnCanvasSave;
 
         #region Constructor / Setup
 
@@ -54,9 +56,25 @@ namespace PaintSharp.Core.ViewModels
         {
             ToolBarViewModel = toolBarViewModel;
             LayersBarViewModel = layersBarViewModel;
+            LayersBarViewModel.OnCanvasSaveRequested += OnCanvasSaveRequested;
 
             addLayerService.AddLayer("Background", new Size(1,1), Colors.Red);
         }
+
+        private void OnCanvasSaveRequested()
+        {
+            OnCanvasSave?.Invoke();
+        }
+
+        #endregion
+
+        #region Destructor
+
+        ~MainViewModel()
+        {
+            LayersBarViewModel.OnCanvasSaveRequested -= OnCanvasSaveRequested;
+        }
+
         #endregion
 
         #region Layers Management

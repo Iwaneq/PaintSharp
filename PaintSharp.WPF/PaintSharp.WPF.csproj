@@ -28,6 +28,7 @@
     <PackageReference Include="HandyControl" Version="3.3.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,10 @@
     <Resource Include="Resources\Fonts\BeVietnamPro.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\" />
   </ItemGroup>
 
 </Project>
