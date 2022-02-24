@@ -31,5 +31,11 @@ namespace PaintSharp.Core.State
                 _layerTabs = value;
             }
         }
+
+        public static void ClearLayers()
+        {
+            Layers.Clear();
+            LayerTabs.Clear();
+        }
     }
 }

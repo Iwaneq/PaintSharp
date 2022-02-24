@@ -1,4 +1,5 @@
 ﻿using PaintSharp.Core.Commands;
+using PaintSharp.Core.Commands.OpenView;
 using PaintSharp.Core.Commands.Utils;
 using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.State;
@@ -40,6 +41,7 @@ namespace PaintSharp.Core.ViewModels
         public OpenAddLayerMessageViewCommand OpenAddLayerMessageViewCommand { get; set; }
         public DeleteLayerCommand DeleteLayerCommand { get; set; }
         public ICommand RequestCanvasSaveCommand { get; set; } 
+        public OpenCreateNewFileViewCommand OpenCreateNewFileViewCommand { get; set; }
 
         public event Action OnCanvasSaveRequested;
 
@@ -48,11 +50,13 @@ namespace PaintSharp.Core.ViewModels
         public LayersBarViewModel(IAddLayerService addLayerService,
             IDeleteLayerService deleteLayerService,
             IOpenWindowService openWindowService,
-            AddLayerMessageViewModel addLayerMessageViewModel)
+            AddLayerMessageViewModel addLayerMessageViewModel,
+            CreateNewFileViewModel createNewFileViewModel)
         {
             OpenAddLayerMessageViewCommand = new OpenAddLayerMessageViewCommand(openWindowService, addLayerMessageViewModel);
             DeleteLayerCommand = new DeleteLayerCommand(deleteLayerService);
             RequestCanvasSaveCommand = new RelayCommand(() => OnCanvasSaveRequested?.Invoke());
+            OpenCreateNewFileViewCommand = new OpenCreateNewFileViewCommand(openWindowService, createNewFileViewModel);
         }
 
         #endregion

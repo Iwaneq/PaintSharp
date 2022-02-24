@@ -105,6 +105,7 @@
                 HorizontalAlignment="Right"
                 extensions:SvgButtonExtension.Padding="10"
                 extensions:SvgButtonExtension.SvgPath="{StaticResource NewFile_Icon}"
+                Command="{Binding OpenCreateNewFileViewCommand}"
                 Style="{StaticResource DarkSvgButton}" />
         </Grid>
 

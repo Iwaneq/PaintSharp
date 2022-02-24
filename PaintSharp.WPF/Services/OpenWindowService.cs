@@ -13,21 +13,27 @@ namespace PaintSharp.WPF.Services
     {
         public void OpenWindow(string title, BaseViewModel viewModel)
         {
-            Window window = new Window();
-            window.Title = title;
-            window.Content = viewModel;
+            Window window = SetupWindow(title, viewModel);
             window.Show();
         }
 
         public void OpenWindow(string title, BaseViewModel viewModel, int windowHeight, int windowWidth)
         {
-            Window window = new Window();
-            window.Title = title;
-            window.Content = viewModel;
+            Window window = SetupWindow(title, viewModel);
             window.Show();
 
             window.Height = windowHeight;
             window.Width = windowWidth;
+        }
+
+        private Window SetupWindow(string title, BaseViewModel viewModel) 
+        {
+            Window window = new Window();
+            window.Title = title;
+            window.Content = viewModel;
+            window.Topmost = true;
+
+            return window;
         }
     }
 }

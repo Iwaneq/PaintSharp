@@ -1,0 +1,113 @@
+﻿<UserControl
+    x:Class="PaintSharp.WPF.Views.CreateNewFileView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dir="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
+    xmlns:local="clr-namespace:PaintSharp.WPF.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{StaticResource PrimaryBrush1}"
+    Foreground="white"
+    mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Margin="0,0,0,15"
+            FontSize="18"
+            Text="Create new File:" />
+
+        <!--#region CANVAS SIZE-->
+
+        <Grid
+            Grid.Row="1"
+            MaxWidth="500"
+            Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                Margin="0,0,0,5"
+                FontSize="15"
+                Text="Canvas Size:" />
+
+            <TextBox
+                Grid.Row="1"
+                PreviewTextInput="CheckIfNumber_PreviewTextInput"
+                Style="{StaticResource DarkTextBox}"
+                Text="{Binding CanvasWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8,0"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                Text="X" />
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="3"
+                PreviewTextInput="CheckIfNumber_PreviewTextInput"
+                Style="{StaticResource DarkTextBox}"
+                Text="{Binding CanvasHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        </Grid>
+
+        <!--#endregion-->
+
+        <!--#region CANVAS BACKGROUND-->
+
+        <Grid
+            Grid.Row="2"
+            MaxWidth="500"
+            Margin="0,0,0,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                Margin="0,0,0,10"
+                FontSize="15"
+                Text="Canvas Background:" />
+
+            <dir:ColorPicker
+                Grid.Row="1"
+                Margin="0,0,0,10"
+                IsEnabled="{Binding IsCanvasTransparent, Converter={StaticResource Boolean2BooleanReConverter}}"
+                SelectedColor="{Binding CanvasBackground}" />
+
+            <CheckBox
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+                Content="Transparent background?"
+                Foreground="white"
+                IsChecked="{Binding IsCanvasTransparent}" />
+
+        </Grid>
+
+        <!--#endregion-->
+
+        <Button
+            Grid.Row="3"
+            Click="Button_Click"
+            Content="Create" />
+
+    </Grid>
+</UserControl>

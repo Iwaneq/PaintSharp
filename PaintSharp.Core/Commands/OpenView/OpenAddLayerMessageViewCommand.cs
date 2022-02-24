@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PaintSharp.Core.Commands
+namespace PaintSharp.Core.Commands.OpenView
 {
     public class OpenAddLayerMessageViewCommand : ICommand
     {

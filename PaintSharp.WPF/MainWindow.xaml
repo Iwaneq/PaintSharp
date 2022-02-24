@@ -20,6 +20,10 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
+    <Window.Resources>
+        <SolidColorBrush x:Key="CanvasBackground" Color="{Binding CanvasBackground}" />
+    </Window.Resources>
+
     <WindowChrome.WindowChrome>
         <WindowChrome
             CaptionHeight="45"
@@ -132,8 +136,9 @@
                 Background="Transparent">
                 <ItemsControl
                     Name="MainCanvas"
-                    Width="{x:Static state:CanvasState.CanvasWidth}"
-                    Height="{x:Static state:CanvasState.CanvasHeight}"
+                    Width="{Binding CanvasWidth}"
+                    Height="{Binding CanvasHeight}"
+                    Background="{DynamicResource CanvasBackground}"
                     ItemsSource="{Binding Layers}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

@@ -15,6 +15,8 @@ namespace PaintSharp.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        private readonly IOpenWindowService _openWindowService;
+
         private ToolBarViewModel _toolBarViewModel;
         public ToolBarViewModel ToolBarViewModel
         {
@@ -37,6 +39,16 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
+        private CreateNewFileViewModel _createNewFileViewModel;
+        public CreateNewFileViewModel CreateNewFileViewModel
+        {
+            get { return _createNewFileViewModel; }
+            set 
+            {
+                _createNewFileViewModel = value;
+                OnPropertyChanged(nameof(CreateNewFileViewModel));
+            }
+        }
 
         public ObservableCollection<LayerViewModel> Layers
         {
@@ -48,17 +60,41 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
+        public double CanvasWidth
+        {
+            get { return CanvasState.CanvasWidth; }
+        }
+        public double CanvasHeight
+        {
+            get { return CanvasState.CanvasHeight; }
+        }
+        public Color CanvasBackground
+        {
+            get { return CanvasState.CanvasBackground; }
+        }
+
         public event Action OnCanvasSave;
 
         #region Constructor / Setup
 
-        public MainViewModel(ToolBarViewModel toolBarViewModel, LayersBarViewModel layersBarViewModel, IAddLayerService addLayerService)
+        public MainViewModel(ToolBarViewModel toolBarViewModel, LayersBarViewModel layersBarViewModel, IAddLayerService addLayerService, CreateNewFileViewModel createNewFileViewModel, IOpenWindowService openWindowService)
         {
             ToolBarViewModel = toolBarViewModel;
             LayersBarViewModel = layersBarViewModel;
             LayersBarViewModel.OnCanvasSaveRequested += OnCanvasSaveRequested;
+            CreateNewFileViewModel = createNewFileViewModel;
+            _openWindowService = openWindowService;
 
-            addLayerService.AddLayer("Background", new Size(1,1), Colors.Red);
+            CanvasState.StateChanged += OnCanvasStateChanged;
+
+            openWindowService.OpenWindow("Create new File", createNewFileViewModel, 350, 300);
+        }
+
+        private void OnCanvasStateChanged()
+        {
+            OnPropertyChanged(nameof(CanvasWidth));
+            OnPropertyChanged(nameof(CanvasHeight));
+            OnPropertyChanged(nameof(CanvasBackground));
         }
 
         private void OnCanvasSaveRequested()
@@ -73,6 +109,7 @@ namespace PaintSharp.Core.ViewModels
         ~MainViewModel()
         {
             LayersBarViewModel.OnCanvasSaveRequested -= OnCanvasSaveRequested;
+            CanvasState.StateChanged -= OnCanvasStateChanged;
         }
 
         #endregion

@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:layerViews="clr-namespace:PaintSharp.WPF.Views.Layers"
     xmlns:layers="clr-namespace:PaintSharp.Core.ViewModels.Layers;assembly=PaintSharp.Core"
-    xmlns:local="clr-namespace:PaintSharp.WPF">
+    xmlns:local="clr-namespace:PaintSharp.WPF"
+    xmlns:viewModels="clr-namespace:PaintSharp.Core.ViewModels;assembly=PaintSharp.Core"
+    xmlns:views="clr-namespace:PaintSharp.WPF.Views">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -29,6 +31,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type layers:AddLayerMessageViewModel}">
                 <layerViews:AddLayerMessageView AddLayerCommand="{Binding AddLayerCommand}" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:CreateNewFileViewModel}">
+                <views:CreateNewFileView CreateNewFileCommand="{Binding CreateNewFileCommand}" />
             </DataTemplate>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
