@@ -38,7 +38,7 @@ namespace PaintSharp.Core.Commands
             if (parameter == null) return;
 
             var viewModel = (AddLayerMessageViewModel)parameter;
-            _addLayerService.AddLayer(viewModel.LayerName, new Size(1, 1), viewModel.LayerBackground, ((float)viewModel.LayerOpacity)/100);
+            _addLayerService.AddLayer(viewModel.LayerName, new Size(1, 1), viewModel.LayerBackground, viewModel.IsLayerTransparent, ((float)viewModel.LayerOpacity)/100);
         } 
 
         #endregion

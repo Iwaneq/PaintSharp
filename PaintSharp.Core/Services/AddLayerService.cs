@@ -24,10 +24,20 @@ namespace PaintSharp.Core.Services
 
         #endregion
 
-        public void AddLayer(string name, Size size, Color background)
+        public void AddLayer(string name, Size size, Color background, bool isLayerTransparent)
         {
             //Create Layer of given size and with given background
-            LayerViewModel layer = new LayerViewModel(background);
+            //If Layer is Transparent, background color will be Transparent
+            LayerViewModel layer;
+            if (isLayerTransparent)
+            {
+                layer = new LayerViewModel(Colors.Transparent);
+            }
+            else
+            {
+                layer = new LayerViewModel(background); 
+            }
+
             layer.Opacity = 100;
             LayerState.Layers.Add(layer);
 
@@ -40,10 +50,20 @@ namespace PaintSharp.Core.Services
             LayerState.LayerTabs.Insert(0, layerTab);
         }
 
-        public void AddLayer(string name, Size size, Color background, float opacity)
+        public void AddLayer(string name, Size size, Color background, bool isLayerTransparent, float opacity)
         {
             //Create Layer of given size and with given background
-            LayerViewModel layer = new LayerViewModel(background);
+            //If Layer is Transparent, background color will be Transparent
+            LayerViewModel layer;
+            if (isLayerTransparent)
+            {
+                layer = new LayerViewModel(Colors.Transparent);
+            }
+            else
+            {
+                layer = new LayerViewModel(background);
+            }
+
             layer.Opacity = opacity;
             LayerState.Layers.Add(layer);
 

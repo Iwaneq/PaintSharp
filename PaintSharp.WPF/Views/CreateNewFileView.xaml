@@ -21,7 +21,7 @@
 
         <TextBlock
             Margin="0,0,0,15"
-            FontSize="18"
+            FontSize="25"
             Text="Create new File:" />
 
         <!--#region CANVAS SIZE-->
@@ -42,7 +42,7 @@
 
             <TextBlock
                 Margin="0,0,0,5"
-                FontSize="15"
+                FontSize="18"
                 Text="Canvas Size:" />
 
             <TextBox
@@ -84,7 +84,7 @@
 
             <TextBlock
                 Margin="0,0,0,10"
-                FontSize="15"
+                FontSize="18"
                 Text="Canvas Background:" />
 
             <dir:ColorPicker
@@ -97,6 +97,7 @@
                 Grid.Row="2"
                 HorizontalAlignment="Left"
                 Content="Transparent background?"
+                FontSize="15"
                 Foreground="white"
                 IsChecked="{Binding IsCanvasTransparent}" />
 

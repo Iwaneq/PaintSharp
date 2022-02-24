@@ -47,7 +47,7 @@ namespace PaintSharp.Core.Commands
 
             LayerState.ClearLayers();
 
-            _addLayerService.AddLayer("Background", new Size(1, 1), Colors.Transparent);
+            _addLayerService.AddLayer("Background", new Size(1, 1), Colors.Transparent, true);
         } 
 
         #endregion

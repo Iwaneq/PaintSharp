@@ -33,7 +33,7 @@ namespace PaintSharp.Core.ViewModels.Layers
             }
         }
 
-        private Color _layerBackground = Colors.Transparent;
+        private Color _layerBackground = Colors.White;
         public Color LayerBackground
         {
             get { return _layerBackground; }
@@ -43,6 +43,18 @@ namespace PaintSharp.Core.ViewModels.Layers
                 OnPropertyChanged(nameof(LayerBackground));
             }
         }
+
+        private bool _isLayerTransparent = true;
+        public bool IsLayerTransparent
+        {
+            get { return _isLayerTransparent; }
+            set 
+            {
+                _isLayerTransparent = value;
+                OnPropertyChanged(nameof(IsLayerTransparent));
+            }
+        }
+
 
         public AddLayerCommand AddLayerCommand { get; set; }
 
@@ -59,7 +71,8 @@ namespace PaintSharp.Core.ViewModels.Layers
         {
             LayerName = "";
             LayerOpacity = 100;
-            LayerBackground = Colors.Transparent;
+            LayerBackground = Colors.White;
+            IsLayerTransparent = true;
         }
     }
 }
