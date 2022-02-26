@@ -149,7 +149,10 @@
             </Grid>
             <!--#endregion-->
 
-            <GridSplitter Grid.Column="1" Width="2" />
+            <GridSplitter
+                Grid.Column="1"
+                Width="2"
+                Panel.ZIndex="20" />
 
             <view:LayersBarView Grid.Column="2" DataContext="{Binding LayersBarViewModel}" />
 

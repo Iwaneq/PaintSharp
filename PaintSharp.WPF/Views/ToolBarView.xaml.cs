@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PaintSharp.WPF.Services;
+using PaintSharp.WPF.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,58 +22,25 @@ namespace PaintSharp.WPF.Views
     /// </summary>
     public partial class ToolBarView : UserControl
     {
-        private bool isAttached = true;
-        public Grid MainGrid { get; set; }
-        public Grid DetachedGrid { get; set; }
-        public Window DetachedWindow { get; set; }
+        private IDetachViewService _detachViewService;
+
+        #region Constructor / Setup
 
         public ToolBarView()
         {
             InitializeComponent();
+
+            _detachViewService = new DetachViewService(this);
         }
 
-        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        #endregion
+
+        #region Detach View 
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!isAttached)
-            {
-                AttachControl();
-            }
-            else
-            {
-                MainGrid = (Grid)this.Parent;
-                DeattachControl();
-            }
+            _detachViewService.DetachOrAttachView((int)ActualHeight, (int)ActualWidth, (Grid)Parent);
         }
 
-        private void AttachControl()
-        {
-            DetachedGrid.Children.Remove(this);
-
-            MainGrid.Children.Add(this);
-
-            DetachedWindow.Close();
-            isAttached = true;
-        }
-
-        private void DeattachControl()
-        {
-            DetachedWindow = new Window();
-            DetachedWindow.Width = ActualWidth;
-            DetachedGrid = new Grid();
-            DetachedWindow.Content = DetachedGrid;
-            MainGrid.Children.Remove(this);
-
-            DetachedGrid.Children.Add(this);
-
-            DetachedWindow.Topmost = true;
-            DetachedWindow.Closed += DetachedWindow_Closed;
-            DetachedWindow.Show();
-            isAttached = false;
-        }
-
-        private void DetachedWindow_Closed(object? sender, EventArgs e)
-        {
-            AttachControl();
-        }
+        #endregion
     }
 }

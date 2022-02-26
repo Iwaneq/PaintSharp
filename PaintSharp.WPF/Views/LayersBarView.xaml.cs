@@ -1,4 +1,6 @@
-﻿using PaintSharp.WPF.Views.Layers;
+﻿using PaintSharp.WPF.Services;
+using PaintSharp.WPF.Services.Interfaces;
+using PaintSharp.WPF.Views.Layers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,26 @@ namespace PaintSharp.WPF.Views
     /// </summary>
     public partial class LayersBarView : UserControl
     {
+        private IDetachViewService _detachViewService;
+
+        #region Constructor / Setup
+
         public LayersBarView()
         {
             InitializeComponent();
+
+            _detachViewService = new DetachViewService(this);
         }
+
+        #endregion
+
+        #region Detach View 
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _detachViewService.DetachOrAttachView(((int)ActualHeight), ((int)ActualWidth), (Grid)this.Parent);
+        }
+
+        #endregion
     }
 }
