@@ -24,6 +24,10 @@ namespace PaintSharp.Core.State.ToolStateHelpers
                 case ToolType.Spray:
                     ChangeToSpray();
                     break;
+                case ToolType.Fill:
+                    ToolState.IsToolOneClickType = true;
+                    ToolState.DrawDelegate = new DrawDelegate(FloodFill);
+                    break;
             }
         }
 
@@ -31,6 +35,8 @@ namespace PaintSharp.Core.State.ToolStateHelpers
 
         private void ChangeToPen()
         {
+            ToolState.IsToolOneClickType = false;
+
             switch (ToolState.ToolShape)
             {
                 case ToolShape.Circle:
@@ -48,6 +54,8 @@ namespace PaintSharp.Core.State.ToolStateHelpers
 
         private void ChangeToEraser()
         {
+            ToolState.IsToolOneClickType = false;
+
             switch (ToolState.ToolShape)
             {
                 case ToolShape.Circle:
@@ -65,6 +73,8 @@ namespace PaintSharp.Core.State.ToolStateHelpers
 
         private void ChangeToSpray()
         {
+            ToolState.IsToolOneClickType = false;
+
             switch (ToolState.ToolShape)
             {
                 case ToolShape.Circle:
@@ -169,6 +179,54 @@ namespace PaintSharp.Core.State.ToolStateHelpers
                                     (int)pt.Y - ((int)ToolState.BrushRadius) + j + 1,
                                     WriteableBitmapExtensions.ConvertColor(color), true);
                     }
+                }
+            }
+        }
+        private void FloodFill(Point pt, WriteableBitmap writeableBitmap)
+        {
+            Color oldColor = writeableBitmap.GetPixel(((int)pt.X), ((int)pt.Y));
+            if (ToolState.BrushColor.Equals(oldColor))
+            {
+                return;
+            }
+
+            Stack<Point> pixels = new Stack<Point>();
+
+            pixels.Push(pt);
+            while(pixels.Count != 0)
+            {
+                Point temp = pixels.Pop();
+                int y1 = ((int)temp.Y);
+                while(y1 >= 0 && writeableBitmap.GetPixel(((int)temp.X), y1) == oldColor)
+                {
+                    y1--;
+                }
+                y1++;
+                bool spanLeft = false;
+                bool spanRight = false;
+                while(y1 < writeableBitmap.PixelHeight && writeableBitmap.GetPixel(((int)temp.X), y1) == oldColor)
+                {
+                    writeableBitmap.SetPixel(((int)temp.X), y1, ToolState.BrushColor);
+
+                    if (!spanLeft && temp.X > 1 && writeableBitmap.GetPixel(((int)temp.X) - 1, y1) == oldColor)
+                    {
+                        pixels.Push(new Point(temp.X - 1, y1));
+                        spanLeft = true;
+                    }
+                    else if (spanLeft && temp.X - 1 == 0 && writeableBitmap.GetPixel(((int)temp.X) - 1, y1) != oldColor)
+                    {
+                        spanLeft = false;
+                    }
+                    if (!spanRight && temp.X < writeableBitmap.Width - 1 && writeableBitmap.GetPixel(((int)temp.X) + 1, y1) == oldColor)
+                    {
+                        pixels.Push(new Point(temp.X + 1, y1));
+                        spanRight = true;
+                    }
+                    else if (spanRight && temp.X < writeableBitmap.Width - 1 && writeableBitmap.GetPixel(((int)temp.X) + 1, y1) != oldColor)
+                    {
+                        spanRight = false;
+                    }
+                    y1++;
                 }
             }
         }

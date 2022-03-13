@@ -75,7 +75,12 @@ namespace PaintSharp.WPF.Views.Layers
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(LeftButtonDownCommand != null)
+            //If Tool is "OneClick" (Like fill bucket), it'll Draw on MouseLeftButtonDown
+            if (ToolState.IsToolOneClickType && MouseDrawCommand != null)
+            {
+                Draw(sender, e);
+            }
+            else if(LeftButtonDownCommand != null)
             {
                 LeftButtonDownCommand.Execute(null);
             }
@@ -89,13 +94,18 @@ namespace PaintSharp.WPF.Views.Layers
         }
         private void Image_MouseMove(object sender, MouseEventArgs e)
         {
-            if (ToolState.IsLeftButtonPressed && MouseDrawCommand != null)
+            if (ToolState.IsLeftButtonPressed && !ToolState.IsToolOneClickType && MouseDrawCommand != null)
             {
-                UIElement element = (UIElement)sender;
-                Point pt = e.GetPosition(element);
-
-                MouseDrawCommand.Execute(pt);
+                Draw(sender, e);
             }
+        }
+
+        private void Draw(object sender, MouseEventArgs e)
+        {
+            UIElement element = (UIElement)sender;
+            Point pt = e.GetPosition(element);
+
+            MouseDrawCommand.Execute(pt);
         }
 
         #endregion

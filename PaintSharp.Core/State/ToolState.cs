@@ -14,7 +14,8 @@ namespace PaintSharp.Core.State
     {
         Pen,
         Eraser,
-        Spray
+        Spray,
+        Fill
     }
     public enum ToolShape
     {
@@ -27,6 +28,11 @@ namespace PaintSharp.Core.State
     public static class ToolState
     {
         public static bool IsLeftButtonPressed { get; set; }
+
+        /// <summary>
+        /// Determines if DrawDelegate of Tool can be executed on MouseMove, or not
+        /// </summary>
+        public static bool IsToolOneClickType { get; set; }
         public static DrawDelegate DrawDelegate { get; set; }
         public static ToolShape ToolShape { get; set; } = ToolShape.Circle;
 

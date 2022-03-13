@@ -13,6 +13,8 @@ namespace PaintSharp.Core.ViewModels.Tools
         #region Properties describing Options of given tool
         public ToolType ToolType { get; set; }
 
+        public bool IsEmpty { get; set; } = false;
+
         public bool HasSizeProperty { get; set; } = false;
         public bool HasRadiusProperty { get; set; } = false;
         public bool HasTypeProperty { get; set; } = false;

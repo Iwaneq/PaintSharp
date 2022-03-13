@@ -55,6 +55,7 @@ namespace PaintSharp.WPF
             services.AddSingleton<PenOptionsViewModel>();
             services.AddSingleton<EraserOptionsViewModel>();
             services.AddSingleton<SprayOptionsViewModel>();
+            services.AddSingleton<EmptyOptionsViewModel>();
 
             services.AddSingleton<ToolOptionsViewModelFactory>();
             services.AddSingleton<IToolOptionsNavigator, ToolOptionsNavigator>();

@@ -57,6 +57,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Button
@@ -86,6 +87,16 @@
                 extensions:SvgButtonExtension.SvgPath="{StaticResource Spray_Icon}"
                 Command="{Binding ChangeToolCommand}"
                 CommandParameter="{x:Static state:ToolType.Spray}"
+                Style="{StaticResource DarkSvgButton}" />
+
+            <Button
+                Grid.Column="4"
+                Width="25"
+                Height="25"
+                extensions:SvgButtonExtension.Padding="3"
+                extensions:SvgButtonExtension.SvgPath="{StaticResource Bucket_Icon}"
+                Command="{Binding ChangeToolCommand}"
+                CommandParameter="{x:Static state:ToolType.Fill}"
                 Style="{StaticResource DarkSvgButton}" />
 
         </Grid>
