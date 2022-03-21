@@ -47,6 +47,7 @@ namespace PaintSharp.WPF
             services.AddSingleton<IDeleteLayerService, DeleteLayerService>();
             services.AddSingleton<IToolStateChangerService, ToolStateChangerService>();
             services.AddSingleton<ICanvasStateChangerService, CanvasStateChangerService>();
+            services.AddSingleton<ICreateBitmapSourceFromFileService, CreateBitmapSourceFromFileService>();
 
             services.AddSingleton<IOpenWindowService, OpenWindowService>();
             services.AddSingleton<IMessageBoxService, MessageBoxService>();
@@ -61,6 +62,7 @@ namespace PaintSharp.WPF
             services.AddSingleton<IToolOptionsNavigator, ToolOptionsNavigator>();
 
             services.AddSingleton<AddLayerMessageViewModel>();
+            services.AddSingleton<AddImageLayerMessageViewModel>();
             services.AddSingleton<CreateNewFileViewModel>();
 
             services.AddSingleton<ToolBarViewModel>();

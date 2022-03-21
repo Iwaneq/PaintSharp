@@ -1,5 +1,6 @@
 ﻿using PaintSharp.Core.Exceptions;
 using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.State;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,7 +56,7 @@ namespace PaintSharp.WPF.Services
 
         private RenderTargetBitmap RenderCanvas(ItemsControl canvas)
         {
-            Rect bounds = VisualTreeHelper.GetDescendantBounds(canvas);
+            Rect bounds = new Rect(0,0, CanvasState.CanvasWidth, CanvasState.CanvasHeight);
             double dpi = 96;
 
             RenderTargetBitmap renderTarget = new RenderTargetBitmap((int)bounds.Width, (int)bounds.Height, dpi, dpi, PixelFormats.Default);

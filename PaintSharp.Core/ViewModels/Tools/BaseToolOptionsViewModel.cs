@@ -1,4 +1,5 @@
-﻿using PaintSharp.Core.Services.Interfaces;
+﻿using PaintSharp.Core.Commands;
+using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.State;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace PaintSharp.Core.ViewModels.Tools
         public bool HasBorderThicknessProperty { get; set; } = false;
 
         #endregion
+        public ChangeToolShapeCommand ChangeToolShapeCommand { get; set; }
 
         private readonly IToolStateChangerService _toolStateChanger;
         public int ToolWidth

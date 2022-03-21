@@ -85,7 +85,7 @@
             <TextBlock
                 Margin="0,0,0,10"
                 FontSize="18"
-                Text="Canvas Background:" />
+                Text="Color Background:" />
 
             <dir:ColorPicker
                 Grid.Row="1"
@@ -95,6 +95,7 @@
 
             <CheckBox
                 Grid.Row="2"
+                Margin="0,0,0,20"
                 HorizontalAlignment="Left"
                 Content="Transparent background?"
                 FontSize="15"

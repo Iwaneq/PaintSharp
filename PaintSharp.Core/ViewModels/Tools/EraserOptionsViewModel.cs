@@ -11,8 +11,6 @@ namespace PaintSharp.Core.ViewModels.Tools
 {
     public class EraserOptionsViewModel : BaseToolOptionsViewModel
     {
-        public ChangeToolShapeCommand ChangeToolShapeCommand { get; set; }
-
         #region Constructor / Setup
 
         public EraserOptionsViewModel(IToolStateChangerService toolStateChanger) : base(toolStateChanger)

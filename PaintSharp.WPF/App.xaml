@@ -32,6 +32,9 @@
             <DataTemplate DataType="{x:Type layers:AddLayerMessageViewModel}">
                 <layerViews:AddLayerMessageView AddLayerCommand="{Binding AddLayerCommand}" />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type layers:AddImageLayerMessageViewModel}">
+                <layerViews:AddImageLayerMessageView AddImageLayerCommand="{Binding AddImageLayerCommand}" />
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModels:CreateNewFileViewModel}">
                 <views:CreateNewFileView CreateNewFileCommand="{Binding CreateNewFileCommand}" />
             </DataTemplate>

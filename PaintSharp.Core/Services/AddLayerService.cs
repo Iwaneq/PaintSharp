@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace PaintSharp.Core.Services
 {
@@ -63,6 +64,23 @@ namespace PaintSharp.Core.Services
             {
                 layer = new LayerViewModel(background);
             }
+
+            layer.Opacity = opacity;
+            LayerState.Layers.Add(layer);
+
+            //Create LayerTab and wire it to Layer
+            LayerTabViewModel layerTab = new LayerTabViewModel(_changeLayerVisibilityService)
+            {
+                Name = name,
+                Layer = layer
+            };
+            LayerState.LayerTabs.Insert(0, layerTab);
+        }
+
+        public void AddLayer(string name, Size size, BitmapSource background, float opacity, bool autoScale)
+        {
+            //Create Layer of given size and with given background, and scale it if autoScale is true
+            LayerViewModel layer = new LayerViewModel(background, autoScale);
 
             layer.Opacity = opacity;
             LayerState.Layers.Add(layer);

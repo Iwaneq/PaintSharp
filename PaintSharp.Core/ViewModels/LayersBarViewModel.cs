@@ -39,6 +39,7 @@ namespace PaintSharp.Core.ViewModels
         }
 
         public OpenAddLayerMessageViewCommand OpenAddLayerMessageViewCommand { get; set; }
+        public OpenAddImageLayerMessageViewCommand OpenAddImageLayerMessageViewCommand { get; set; }
         public DeleteLayerCommand DeleteLayerCommand { get; set; }
         public ICommand RequestCanvasSaveCommand { get; set; } 
         public OpenCreateNewFileViewCommand OpenCreateNewFileViewCommand { get; set; }
@@ -51,9 +52,11 @@ namespace PaintSharp.Core.ViewModels
             IDeleteLayerService deleteLayerService,
             IOpenWindowService openWindowService,
             AddLayerMessageViewModel addLayerMessageViewModel,
+            AddImageLayerMessageViewModel addImageLayerMessageViewModel,
             CreateNewFileViewModel createNewFileViewModel)
         {
             OpenAddLayerMessageViewCommand = new OpenAddLayerMessageViewCommand(openWindowService, addLayerMessageViewModel);
+            OpenAddImageLayerMessageViewCommand = new OpenAddImageLayerMessageViewCommand(openWindowService, addImageLayerMessageViewModel);
             DeleteLayerCommand = new DeleteLayerCommand(deleteLayerService);
             RequestCanvasSaveCommand = new RelayCommand(() => OnCanvasSaveRequested?.Invoke());
             OpenCreateNewFileViewCommand = new OpenCreateNewFileViewCommand(openWindowService, createNewFileViewModel);

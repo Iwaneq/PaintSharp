@@ -134,18 +134,25 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Background="Transparent">
-                <ItemsControl
-                    Name="MainCanvas"
+                <Border
                     Width="{Binding CanvasWidth}"
                     Height="{Binding CanvasHeight}"
-                    Background="{DynamicResource CanvasBackground}"
-                    ItemsSource="{Binding Layers}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                    BorderBrush="Black"
+                    BorderThickness="2"
+                    ClipToBounds="True">
+                    <ItemsControl
+                        Name="MainCanvas"
+                        Width="{Binding CanvasWidth}"
+                        Height="{Binding CanvasHeight}"
+                        Background="{DynamicResource CanvasBackground}"
+                        ItemsSource="{Binding Layers}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Border>
             </Grid>
             <!--#endregion-->
 

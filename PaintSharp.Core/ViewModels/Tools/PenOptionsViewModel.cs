@@ -13,8 +13,6 @@ namespace PaintSharp.Core.ViewModels.Tools
 {
     public class PenOptionsViewModel : BaseToolOptionsViewModel
     {
-        public ChangeToolShapeCommand ChangeToolShapeCommand { get; set; }
-
         #region Constructor / Setup
 
         public PenOptionsViewModel(IToolStateChangerService toolStateChanger) : base(toolStateChanger)

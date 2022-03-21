@@ -11,8 +11,6 @@ namespace PaintSharp.Core.ViewModels.Tools
 {
     public class SprayOptionsViewModel : BaseToolOptionsViewModel
     {
-        public ChangeToolShapeCommand ChangeToolShapeCommand { get; set; }
-
         #region Constructor / Setup
 
         public SprayOptionsViewModel(IToolStateChangerService toolStateChangerService) : base(toolStateChangerService)

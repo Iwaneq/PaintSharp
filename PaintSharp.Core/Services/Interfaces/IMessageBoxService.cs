@@ -8,7 +8,9 @@ namespace PaintSharp.Core.Services.Interfaces
 {
     public interface IMessageBoxService
     {
+        void ShowError(string title, string message);
         string GetSavingPath(string startDirectory);
         string GetSavingPath();
+        string GetFilePath();
     }
 }
