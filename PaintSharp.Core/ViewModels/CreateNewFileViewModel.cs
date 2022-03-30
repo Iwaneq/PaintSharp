@@ -61,5 +61,13 @@ namespace PaintSharp.Core.ViewModels
         }
 
         #endregion
+
+        public void ResetViewModel()
+        {
+            CanvasWidth = 0;
+            CanvasHeight = 0;
+            IsCanvasTransparent = false;
+            CanvasBackground = Colors.White;
+        }
     }
 }

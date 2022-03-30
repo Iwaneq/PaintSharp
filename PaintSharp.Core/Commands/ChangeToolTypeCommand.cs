@@ -39,10 +39,12 @@ namespace PaintSharp.Core.Commands
 
         public void Execute(object? parameter)
         {
+            //If ToolType hasn't been passed to command, return
             if (parameter == null) return;
 
             ToolType type = (ToolType)parameter; 
 
+            //Change ToolType and Navigate to new ToolOptions
             _toolStateChanger.ChangeToolType(type);
             _toolOptionsNavigator.Navigate(type, _toolBar);
         }

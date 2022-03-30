@@ -35,10 +35,13 @@ namespace PaintSharp.Core.Commands
 
         public void Execute(object? parameter)
         {
+            //if ViewModel hasn't been passed to command, return
             if (parameter == null) return;
 
             var viewModel = (AddLayerMessageViewModel)parameter;
-            _addLayerService.AddLayer(viewModel.LayerName, new Size(1, 1), viewModel.LayerBackground, viewModel.IsLayerTransparent, ((float)viewModel.LayerOpacity)/100);
+
+            //Add new Layer
+            _addLayerService.AddLayer(viewModel.LayerName, viewModel.LayerBackground, viewModel.IsLayerTransparent, ((float)viewModel.LayerOpacity)/100);
         } 
 
         #endregion

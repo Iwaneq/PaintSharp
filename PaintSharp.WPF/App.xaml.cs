@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PaintSharp.Core.Commands.OpenView;
 using PaintSharp.Core.Factories;
 using PaintSharp.Core.Navigation;
 using PaintSharp.Core.Navigation.Interfaces;
@@ -40,8 +41,11 @@ namespace PaintSharp.WPF
         {
             IServiceCollection services = new ServiceCollection();
 
+            /*   ---   ADD SERVICE HELPERS   ---   */
             services.AddSingleton<IDrawDelegatesHelper, DrawDelegatesHelper>();
 
+
+            /*   ---   ADD BASIC SERVICES   ---   */
             services.AddSingleton<IChangeLayerVisibilityService, ChangeLayerVisibilityService>();
             services.AddSingleton<IAddLayerService, AddLayerService>();
             services.AddSingleton<IDeleteLayerService, DeleteLayerService>();
@@ -49,25 +53,37 @@ namespace PaintSharp.WPF
             services.AddSingleton<ICanvasStateChangerService, CanvasStateChangerService>();
             services.AddSingleton<ICreateBitmapSourceFromFileService, CreateBitmapSourceFromFileService>();
 
+
+            /*   ---   ADD WINDOWS-SPECIFIC SERVICES   ---   */
             services.AddSingleton<IOpenWindowService, OpenWindowService>();
             services.AddSingleton<IMessageBoxService, MessageBoxService>();
             services.AddSingleton<ISaveCanvasService, SaveCanvasService>();
 
+
+            /*   ---   ADD ADD/CREATE MESSAGE VIEW MODELS   ---   */
+            services.AddTransient<AddLayerMessageViewModel>();
+            services.AddTransient<AddImageLayerMessageViewModel>();
+            services.AddTransient<CreateNewFileViewModel>();
+
+
+            /*   ---   ADD TOOL OPTIONS VIEW MODELS   ---   */
             services.AddSingleton<PenOptionsViewModel>();
             services.AddSingleton<EraserOptionsViewModel>();
             services.AddSingleton<SprayOptionsViewModel>();
             services.AddSingleton<EmptyOptionsViewModel>();
 
+
+            /*   ---   ADD FACTORIES AND NAVIGATORS   ---   */
             services.AddSingleton<ToolOptionsViewModelFactory>();
             services.AddSingleton<IToolOptionsNavigator, ToolOptionsNavigator>();
 
-            services.AddSingleton<AddLayerMessageViewModel>();
-            services.AddSingleton<AddImageLayerMessageViewModel>();
-            services.AddSingleton<CreateNewFileViewModel>();
 
+            /*   ---   ADD BASIC VIEW MODELS   ---   */
             services.AddSingleton<ToolBarViewModel>();
             services.AddSingleton<LayersBarViewModel>();
 
+
+            /*   ---   ADD MAIN OBJECTS   ---   */
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainViewModel>();
 

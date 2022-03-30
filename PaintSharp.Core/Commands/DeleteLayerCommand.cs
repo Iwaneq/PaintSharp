@@ -33,10 +33,12 @@ namespace PaintSharp.Core.Commands
 
         public void Execute(object? parameter)
         {
+            //If LayerTab hasn't been passed to command, return
             if (parameter == null) return;
 
             LayerTabViewModel layerTab = (LayerTabViewModel)parameter;
 
+            //Delete Layer
             _deleteLayerService.DeleteLayer(layerTab);
         } 
 

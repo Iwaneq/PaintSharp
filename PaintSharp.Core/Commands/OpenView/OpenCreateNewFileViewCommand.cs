@@ -35,6 +35,8 @@ namespace PaintSharp.Core.Commands.OpenView
 
         public void Execute(object? parameter)
         {
+            //Clear input fields in View, then open it
+            _createNewFileViewModel.ResetViewModel();
             _openWindowService.OpenWindow("Create New File", _createNewFileViewModel, 350, 300);
         } 
 

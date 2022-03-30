@@ -40,14 +40,17 @@ namespace PaintSharp.Core.Commands
 
         public void Execute(object? parameter)
         {
+            //Set new Canvas
             _canvasStateChangerService.SetCanvas(_createNewFileViewModel.CanvasWidth,
                 _createNewFileViewModel.CanvasHeight,
                 _createNewFileViewModel.CanvasBackground,
                 _createNewFileViewModel.IsCanvasTransparent);
 
+            //Clear LayerState
             LayerState.ClearLayers();
 
-            _addLayerService.AddLayer("Background", new Size(1, 1), Colors.Transparent, true);
+            //Add first Layer
+            _addLayerService.AddLayer("Background", Colors.Transparent, true);
         } 
 
         #endregion

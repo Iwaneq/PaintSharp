@@ -11,8 +11,8 @@ namespace PaintSharp.Core.Services.Interfaces
 {
     public interface IAddLayerService
     {
-        void AddLayer(string name, Size size, Color background, bool isLayerTransparent);
-        void AddLayer(string name, Size size, Color background, bool isLayerTransparent, float opacity);
-        void AddImageLayer(string name, Size size, BitmapSource background, float opacity, bool autoScale);
+        void AddLayer(string name, Color background, bool isLayerTransparent);
+        void AddLayer(string name, Color background, bool isLayerTransparent, float opacity);
+        void AddImageLayer(string name, BitmapSource background, float opacity, bool autoScale);
     }
 }

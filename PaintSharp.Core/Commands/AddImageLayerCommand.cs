@@ -54,7 +54,7 @@ namespace PaintSharp.Core.Commands
             var background = _createBitmapSourceFromFileService.CreateBitmapSource(viewModel.BackgroundFilePath);
 
             //Add new Layer
-            _addLayerService.AddImageLayer(viewModel.LayerName, new System.Windows.Size(1, 1), background, ((float)viewModel.LayerOpacity)/100, viewModel.AutoScaleImage);
+            _addLayerService.AddImageLayer(viewModel.LayerName, background, ((float)viewModel.LayerOpacity)/100, viewModel.AutoScaleImage);
         } 
 
         #endregion

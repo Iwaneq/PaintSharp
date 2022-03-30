@@ -35,9 +35,12 @@ namespace PaintSharp.Core.Commands
 
         public void Execute(object? parameter)
         {
+            //If ToolShape hasn't been passed to command, return
             if (parameter == null) return;
 
             ToolShape shape = (ToolShape)parameter;
+
+            //Change ToolShape
             _toolStateChanger.ChangeToolShape(shape, _toolType);
         } 
 

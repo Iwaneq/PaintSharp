@@ -35,6 +35,7 @@ namespace PaintSharp.Core.Commands.OpenView
 
         public void Execute(object? parameter)
         {
+            //Clear input fields in View, then open it
             _addLayerMessageViewModel.ResetViewModel();
             _openWindowService.OpenWindow("Add Layer", _addLayerMessageViewModel, 400, 300);
         } 

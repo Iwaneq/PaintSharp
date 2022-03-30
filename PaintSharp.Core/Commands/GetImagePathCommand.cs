@@ -1,4 +1,5 @@
-﻿using PaintSharp.Core.Services.Interfaces;
+﻿using PaintSharp.Core.Exceptions;
+using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.ViewModels.Layers;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,14 @@ namespace PaintSharp.Core.Commands
             {
                 filePath = _messageBoxService.GetFilePath();
             }
-            catch (Exception) { }
+            catch (Exception ex) 
+            {
+                //MessageBoxService throws GetPathFailedException only when User closes MessageBox, so he dosen't need information about Error
+                if(ex is not GetPathFailedException)
+                {
+                    _messageBoxService.ShowError(ex.GetType().ToString(), ex.Message);
+                }
+            }
             finally
             {
                 _addImageLayerMessageViewModel.BackgroundFilePath = filePath;
