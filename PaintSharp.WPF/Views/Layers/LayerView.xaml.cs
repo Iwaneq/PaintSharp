@@ -26,31 +26,31 @@ namespace PaintSharp.WPF.Views.Layers
 
         #region Dependency Properties for Drawing Commands
 
-        public ICommand LeftButtonDownCommand
+        public ICommand LayerLeftButtonDownCommand
         {
             get { return (ICommand)GetValue(LeftButtonDownCommandProperty); }
             set { SetValue(LeftButtonDownCommandProperty, value); }
         }
         public static readonly DependencyProperty LeftButtonDownCommandProperty =
-            DependencyProperty.Register("LeftButtonDownCommand", typeof(ICommand), typeof(LayerView), new PropertyMetadata(default(ICommand)));
+            DependencyProperty.Register("LayerLeftButtonDownCommand", typeof(ICommand), typeof(LayerView), new PropertyMetadata(default(ICommand)));
 
 
-        public ICommand LeftButtonUpCommand
+        public ICommand LayerLeftButtonUpCommand
         {
             get { return (ICommand)GetValue(LeftButtonUpCommandProperty); }
             set { SetValue(LeftButtonUpCommandProperty, value); }
         }
         public static readonly DependencyProperty LeftButtonUpCommandProperty =
-            DependencyProperty.Register("LeftButtonUpCommand", typeof(ICommand), typeof(LayerView), new PropertyMetadata(default(ICommand)));
+            DependencyProperty.Register("LayerLeftButtonUpCommand", typeof(ICommand), typeof(LayerView), new PropertyMetadata(default(ICommand)));
 
 
-        public ICommand MouseDrawCommand
+        public ICommand LayerMouseDrawCommand
         {
             get { return (ICommand)GetValue(MouseDrawCommandProperty); }
             set { SetValue(MouseDrawCommandProperty, value); }
         }
         public static readonly DependencyProperty MouseDrawCommandProperty =
-            DependencyProperty.Register("MouseDrawCommand", typeof(ICommand), typeof(LayerView), new PropertyMetadata(default(ICommand)));
+            DependencyProperty.Register("LayerMouseDrawCommand", typeof(ICommand), typeof(LayerView), new PropertyMetadata(default(ICommand)));
 
         #endregion
 
@@ -76,25 +76,25 @@ namespace PaintSharp.WPF.Views.Layers
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //If Tool is "OneClick" (Like fill bucket), it'll Draw on MouseLeftButtonDown
-            if (ToolState.IsToolOneClickType && MouseDrawCommand != null)
+            if (ToolState.IsToolOneClickType && LayerMouseDrawCommand != null)
             {
                 Draw(sender, e);
             }
-            else if(LeftButtonDownCommand != null)
+            else if(LayerLeftButtonDownCommand != null)
             {
-                LeftButtonDownCommand.Execute(null);
+                LayerLeftButtonDownCommand.Execute(null);
             }
         }
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if(LeftButtonUpCommand != null)
+            if(LayerLeftButtonUpCommand != null)
             {
-                LeftButtonUpCommand.Execute(null);
+                LayerLeftButtonUpCommand.Execute(null);
             }
         }
         private void Image_MouseMove(object sender, MouseEventArgs e)
         {
-            if (ToolState.IsLeftButtonPressed && !ToolState.IsToolOneClickType && MouseDrawCommand != null)
+            if (ToolState.IsLeftButtonPressed && !ToolState.IsToolOneClickType && LayerMouseDrawCommand != null)
             {
                 Draw(sender, e);
             }
@@ -105,7 +105,7 @@ namespace PaintSharp.WPF.Views.Layers
             UIElement element = (UIElement)sender;
             Point pt = e.GetPosition(element);
 
-            MouseDrawCommand.Execute(pt);
+            LayerMouseDrawCommand.Execute(pt);
         }
 
         #endregion

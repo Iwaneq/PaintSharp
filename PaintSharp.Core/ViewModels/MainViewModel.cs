@@ -50,7 +50,7 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
-        public ObservableCollection<LayerViewModel> Layers
+        public ObservableCollection<BaseLayerViewModel> Layers
         {
             get { return LayerState.Layers; }
             set 

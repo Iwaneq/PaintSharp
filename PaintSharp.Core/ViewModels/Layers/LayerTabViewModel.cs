@@ -21,8 +21,8 @@ namespace PaintSharp.Core.ViewModels.Layers
             }
         }
 
-        private LayerViewModel _layer;
-        public LayerViewModel Layer
+        private BaseLayerViewModel _layer;
+        public BaseLayerViewModel Layer
         {
             get { return _layer; }
             set 

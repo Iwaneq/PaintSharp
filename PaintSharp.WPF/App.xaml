@@ -22,9 +22,15 @@
 
             <DataTemplate DataType="{x:Type layers:LayerViewModel}">
                 <layerViews:LayerView
-                    LeftButtonDownCommand="{Binding LeftButtonDownCommand}"
-                    LeftButtonUpCommand="{Binding LeftButtonUpCommand}"
-                    MouseDrawCommand="{Binding MouseDrawCommand}" />
+                    LayerLeftButtonDownCommand="{Binding LeftButtonDownCommand}"
+                    LayerLeftButtonUpCommand="{Binding LeftButtonUpCommand}"
+                    LayerMouseDrawCommand="{Binding MouseDrawCommand}" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type layers:ImageLayerViewModel}">
+                <layerViews:ImageLayerView
+                    ImageLayerLeftButtonDownCommand="{Binding LeftButtonDownCommand}"
+                    ImageLayerLeftButtonUpCommand="{Binding LeftButtonUpCommand}"
+                    ImageLayerMouseDrawCommand="{Binding MouseDrawCommand}" />
             </DataTemplate>
             <DataTemplate DataType="{x:Type layers:LayerTabViewModel}">
                 <layerViews:LayerTabView />

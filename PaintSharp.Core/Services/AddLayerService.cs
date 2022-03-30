@@ -77,10 +77,10 @@ namespace PaintSharp.Core.Services
             LayerState.LayerTabs.Insert(0, layerTab);
         }
 
-        public void AddLayer(string name, Size size, BitmapSource background, float opacity, bool autoScale)
+        public void AddImageLayer(string name, Size size, BitmapSource background, float opacity, bool autoScale)
         {
-            //Create Layer of given size and with given background, and scale it if autoScale is true
-            LayerViewModel layer = new LayerViewModel(background, autoScale);
+            //Create ImageLayer of given size and with given background, and scale it if autoScale is true
+            ImageLayerViewModel layer = new ImageLayerViewModel(background, autoScale);
 
             layer.Opacity = opacity;
             LayerState.Layers.Add(layer);

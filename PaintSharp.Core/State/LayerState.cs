@@ -12,8 +12,8 @@ namespace PaintSharp.Core.State
     {
         public static int LayersCount { get; set; }
 
-        private static ObservableCollection<LayerViewModel> _layers = new ObservableCollection<LayerViewModel>();
-        public static ObservableCollection<LayerViewModel> Layers
+        private static ObservableCollection<BaseLayerViewModel> _layers = new ObservableCollection<BaseLayerViewModel>();
+        public static ObservableCollection<BaseLayerViewModel> Layers
         {
             get { return _layers; }
             set 

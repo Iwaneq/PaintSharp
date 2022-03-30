@@ -9,6 +9,6 @@ namespace PaintSharp.Core.Services.Interfaces
 {
     public interface IChangeLayerVisibilityService
     {
-        void ChangeLayerVisibility(LayerViewModel layer);
+        void ChangeLayerVisibility(BaseLayerViewModel layer);
     }
 }

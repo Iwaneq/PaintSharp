@@ -10,7 +10,7 @@ namespace PaintSharp.Core.Services
 {
     public class ChangeLayerVisibilityService : IChangeLayerVisibilityService
     {
-        public void ChangeLayerVisibility(LayerViewModel layer)
+        public void ChangeLayerVisibility(BaseLayerViewModel layer)
         {
             if (layer.IsVisible)
             {

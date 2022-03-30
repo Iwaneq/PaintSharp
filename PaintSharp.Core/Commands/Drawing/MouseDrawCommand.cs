@@ -12,13 +12,13 @@ namespace PaintSharp.Core.Commands.Drawing
 {
     public class MouseDrawCommand : ICommand
     {
-        private readonly LayerViewModel _layer;
+        private readonly BaseLayerViewModel _layer;
 
         public event EventHandler? CanExecuteChanged;
 
         #region Constructor / Setup
 
-        public MouseDrawCommand(LayerViewModel layer)
+        public MouseDrawCommand(BaseLayerViewModel layer)
         {
             _layer = layer;
         } 
