@@ -13,6 +13,11 @@ namespace PaintSharp.Core.Services
     {
         public void DeleteLayer(LayerTabViewModel layerTab)
         {
+            if(layerTab == null)
+            {
+                throw new ArgumentNullException("layerTab");
+            }
+
             //Delete LayerTab from List
             LayerState.LayerTabs.Remove(layerTab);
 

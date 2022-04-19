@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Iwaneq.FileSystem.Systems;
+using Iwaneq.FileSystem.Systems.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PaintSharp.Core.Commands.OpenView;
 using PaintSharp.Core.Factories;
@@ -41,8 +43,12 @@ namespace PaintSharp.WPF
         {
             IServiceCollection services = new ServiceCollection();
 
+            /*   ---   ADD FILE SYSTEMS   ---   */
+            services.AddSingleton<IFile, FileSystem>();
+            services.AddSingleton<IDirectory, DirectorySystem>();
+
             /*   ---   ADD SERVICE HELPERS   ---   */
-            services.AddSingleton<IDrawDelegatesHelper, DrawDelegatesHelper>();
+            services.AddSingleton<IToolStateChangerHelper, ToolStateChangerHelper>();
 
 
             /*   ---   ADD BASIC SERVICES   ---   */

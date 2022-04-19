@@ -13,11 +13,11 @@ namespace PaintSharp.Core.Services
 {
     public class ToolStateChangerService : IToolStateChangerService
     {
-        private readonly IDrawDelegatesHelper _drawDelegatesHelper;
+        private readonly IToolStateChangerHelper _drawDelegatesHelper;
 
         #region Constructor / Setup
 
-        public ToolStateChangerService(IDrawDelegatesHelper drawDelegatesHelper)
+        public ToolStateChangerService(IToolStateChangerHelper drawDelegatesHelper)
         {
             _drawDelegatesHelper = drawDelegatesHelper;
         }
@@ -31,11 +31,25 @@ namespace PaintSharp.Core.Services
 
         public void ChangeToolSize(int width, int height)
         {
+            if(width <= 0)
+            {
+                throw new ArgumentOutOfRangeException("width");
+            }
+            if(height <= 0)
+            {
+                throw new ArgumentOutOfRangeException("height");
+            }
+
             ToolState.BrushSize = new Size(width, height);
         }
 
         public void ChangeToolRadius(int radius)
         {
+            if(radius <= 0)
+            {
+                throw new ArgumentOutOfRangeException("radius");
+            }
+
             ToolState.BrushRadius = radius;
         }
 
