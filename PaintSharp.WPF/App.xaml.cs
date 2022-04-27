@@ -8,9 +8,14 @@ using PaintSharp.Core.Navigation;
 using PaintSharp.Core.Navigation.Interfaces;
 using PaintSharp.Core.Services;
 using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.Services.ServiceHelpers;
+using PaintSharp.Core.Services.ServiceHelpers.Interfaces;
 using PaintSharp.Core.State.ToolStateHelpers;
+using PaintSharp.Core.State.ToolStateHelpers.ChangeToolTypeHelpers;
 using PaintSharp.Core.ViewModels;
 using PaintSharp.Core.ViewModels.Layers;
+using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers;
+using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers.Interfaces;
 using PaintSharp.Core.ViewModels.Tools;
 using PaintSharp.WPF.Services;
 using System;
@@ -48,7 +53,19 @@ namespace PaintSharp.WPF
             services.AddSingleton<IDirectory, DirectorySystem>();
 
             /*   ---   ADD SERVICE HELPERS   ---   */
+            //CHANGE TOOL HELPERS
+            services.AddSingleton<IDrawDelegatesHelper, DrawDelegatesHelper>();
+            services.AddSingleton<ChangeToPenHelper>();
+            services.AddSingleton<ChangeToEraserHelper>();
+            services.AddSingleton<ChangeToSprayHelper>();
+            services.AddSingleton<ChangeToFloodFillHelper>();
+
             services.AddSingleton<IToolStateChangerHelper, ToolStateChangerHelper>();
+
+            services.AddSingleton<ILayerCreatorHelper, LayerCreatorHelper>();
+            services.AddSingleton<IBitmapImageCreatorHelper, BitmapImageCreatorHelper>();
+
+            services.AddSingleton<IImageScalerHelper, ImageScalerHelper>();
 
 
             /*   ---   ADD BASIC SERVICES   ---   */

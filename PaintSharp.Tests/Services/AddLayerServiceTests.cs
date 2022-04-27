@@ -5,6 +5,8 @@ using PaintSharp.Core.Services.Interfaces;
 using PaintSharp.Core.Services.ServiceHelpers.Interfaces;
 using PaintSharp.Core.State;
 using PaintSharp.Core.ViewModels.Layers;
+using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers;
+using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -124,12 +126,15 @@ namespace PaintSharp.Tests.Services
         {
             using (var mock = AutoMock.GetLoose())
             {
+                CanvasState.CanvasWidth = 100;
+                CanvasState.CanvasHeight = 100;
+
                 var addLayerService = mock.Create<AddLayerService>();
                 var bitmapSource = GetBitmapSource();
 
                 mock.Mock<ILayerCreatorHelper>()
                     .Setup(x => x.CreateImageLayer(bitmapSource, true))
-                    .Returns(new ImageLayerViewModel(bitmapSource, true));
+                    .Returns(new ImageLayerViewModel(bitmapSource, true, mock.Create<ImageScalerHelper>()));
 
                 addLayerService.AddImageLayer("ImageLayer1", bitmapSource, 100, true);
 
@@ -169,7 +174,7 @@ namespace PaintSharp.Tests.Services
 
                 mock.Mock<ILayerCreatorHelper>()
                     .Setup(x => x.CreateImageLayer(bitmapSource, true))
-                    .Returns(new ImageLayerViewModel(bitmapSource, true));
+                    .Returns(new ImageLayerViewModel(bitmapSource, true, mock.Mock<IImageScalerHelper>().Object));
 
                 Assert.Throws<ArgumentOutOfRangeException>("opacity", () => addLayerService.AddImageLayer("Layer1", bitmapSource, opacity, true));
             }
