@@ -53,8 +53,6 @@ namespace PaintSharp.Core.ViewModels
 
             ChangeToolCommand = new ChangeToolTypeCommand(toolStateChanger, toolOptionsNavigator, this);
 
-            ChangeToolCommand.Execute(ToolType.Pen);
-
             ToolBrush = Colors.Blue;
         }
 

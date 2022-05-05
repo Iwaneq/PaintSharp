@@ -49,6 +49,33 @@
         </Setter>
     </Style>
 
+    <Style x:Key="DarkSvgRadioButton" TargetType="RadioButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid Name="mainGrid" Background="{StaticResource SecondaryBrush}">
+                        <Path
+                            Margin="{TemplateBinding extensions:SvgButtonExtension.Padding}"
+                            Data="{TemplateBinding extensions:SvgButtonExtension.SvgPath}"
+                            Fill="White"
+                            Stretch="Uniform" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="mainGrid" Property="Background" Value="{StaticResource ActiveBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="mainGrid" Property="Background" Value="Black" />
+                            <Setter Property="Margin" Value="0,-10,0,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="DarkSvgButton" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
