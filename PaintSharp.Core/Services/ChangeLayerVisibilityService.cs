@@ -12,6 +12,11 @@ namespace PaintSharp.Core.Services
     {
         public void ChangeLayerVisibility(BaseLayerViewModel layer)
         {
+            if(layer == null)
+            {
+                throw new ArgumentNullException("layer");
+            }
+
             if (layer.IsVisible)
             {
                 layer.IsVisible = false;

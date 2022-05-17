@@ -1,4 +1,5 @@
 ﻿using PaintSharp.Core.State;
+using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,14 @@ namespace PaintSharp.Core.ViewModels.Layers
 {
     public class ImageLayerViewModel : BaseLayerViewModel
     {
+        private readonly IImageScalerHelper _imageScalerHelper;
+
         #region Constructor / Setup
 
-        public ImageLayerViewModel(BitmapSource background, bool autoScale)
+        public ImageLayerViewModel(BitmapSource background, bool autoScale, IImageScalerHelper imageScalerHelper)
         {
+            _imageScalerHelper = imageScalerHelper;
+
             if (autoScale)
             {
                 var layer = new WriteableBitmap(background);
@@ -29,26 +34,7 @@ namespace PaintSharp.Core.ViewModels.Layers
 
         private void ScaleImageLayer(WriteableBitmap layer)
         {
-
-            float width = layer.PixelWidth;
-            float height = layer.PixelHeight;
-
-            var widthOffset = width - CanvasState.CanvasWidth;
-            var scalePrecentage = ((float)(widthOffset / width));
-
-            width = width - (width * scalePrecentage);
-            height = height - (height * scalePrecentage);
-
-            if (height > CanvasState.CanvasHeight)
-            {
-                var heightOffset = height - CanvasState.CanvasHeight;
-                scalePrecentage = ((float)(heightOffset / height));
-
-                width = width - (width * scalePrecentage);
-                height = height - (height * scalePrecentage);
-            }
-
-            WriteableBitmap = layer.Resize(((int)width), ((int)height), WriteableBitmapExtensions.Interpolation.Bilinear);
+            WriteableBitmap = _imageScalerHelper.ScaleImage(layer);
         }
 
         #endregion

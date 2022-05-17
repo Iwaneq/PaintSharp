@@ -60,16 +60,16 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button
+            <RadioButton
                 Width="25"
                 Height="25"
                 extensions:SvgButtonExtension.Padding="3"
                 extensions:SvgButtonExtension.SvgPath="{StaticResource Pen_Icon2}"
                 Command="{Binding ChangeToolCommand}"
                 CommandParameter="{x:Static state:ToolType.Pen}"
-                Style="{StaticResource DarkSvgButton}" />
+                Style="{StaticResource DarkSvgRadioButton}" />
 
-            <Button
+            <RadioButton
                 Grid.Column="1"
                 Width="25"
                 Height="25"
@@ -77,9 +77,9 @@
                 extensions:SvgButtonExtension.SvgPath="{StaticResource Eraser_Icon}"
                 Command="{Binding ChangeToolCommand}"
                 CommandParameter="{x:Static state:ToolType.Eraser}"
-                Style="{StaticResource DarkSvgButton}" />
+                Style="{StaticResource DarkSvgRadioButton}" />
 
-            <Button
+            <RadioButton
                 Grid.Column="2"
                 Width="25"
                 Height="25"
@@ -87,9 +87,9 @@
                 extensions:SvgButtonExtension.SvgPath="{StaticResource Spray_Icon}"
                 Command="{Binding ChangeToolCommand}"
                 CommandParameter="{x:Static state:ToolType.Spray}"
-                Style="{StaticResource DarkSvgButton}" />
+                Style="{StaticResource DarkSvgRadioButton}" />
 
-            <Button
+            <RadioButton
                 Grid.Column="4"
                 Width="25"
                 Height="25"
@@ -97,7 +97,7 @@
                 extensions:SvgButtonExtension.SvgPath="{StaticResource Bucket_Icon}"
                 Command="{Binding ChangeToolCommand}"
                 CommandParameter="{x:Static state:ToolType.Fill}"
-                Style="{StaticResource DarkSvgButton}" />
+                Style="{StaticResource DarkSvgRadioButton}" />
 
         </Grid>
 

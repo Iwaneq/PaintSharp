@@ -33,6 +33,7 @@ namespace PaintSharp.Core.Commands.Drawing
         public void Execute(object? parameter)
         {
             if (parameter == null) return;
+            if (ToolState.DrawDelegate == null) return;
 
             Point pt = (Point)parameter;
 

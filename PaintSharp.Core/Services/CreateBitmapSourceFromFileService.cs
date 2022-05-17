@@ -1,6 +1,9 @@
-﻿using PaintSharp.Core.Services.Interfaces;
+﻿using Iwaneq.FileSystem.Systems.Interfaces;
+using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.Services.ServiceHelpers.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +14,27 @@ namespace PaintSharp.Core.Services
 {
     public class CreateBitmapSourceFromFileService : ICreateBitmapSourceFromFileService
     {
+        private readonly IBitmapImageCreatorHelper _bitmapImageCreatorHelper;
+        private readonly IFile _fileSystem;
+
+        public CreateBitmapSourceFromFileService(IBitmapImageCreatorHelper bitmapImageCreatorHelper, IFile fileSystem)
+        {
+            _bitmapImageCreatorHelper = bitmapImageCreatorHelper;
+            _fileSystem = fileSystem;
+        }
+
         public BitmapSource CreateBitmapSource(string filePath)
         {
-            BitmapImage image = new BitmapImage(new Uri(filePath, UriKind.Absolute));
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new ArgumentNullException("filePath");
+            }
+            if (!_fileSystem.Exists(filePath))
+            {
+                throw new FileNotFoundException("File is valid!", filePath);
+            }
+
+            BitmapImage image = _bitmapImageCreatorHelper.CreateBitmapImage(filePath, UriKind.Absolute);
             double dpi = 96;
 
             int stride = image.PixelWidth * 4;

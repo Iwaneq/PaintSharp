@@ -13,6 +13,15 @@ namespace PaintSharp.Core.Services
     {
         public void SetCanvas(int width, int height, Color background, bool isTransparent)
         {
+            if(width <= 0)
+            {
+                throw new ArgumentOutOfRangeException("width");
+            }
+            if(height <= 0)
+            {
+                throw new ArgumentOutOfRangeException("height");
+            }
+
             CanvasState.CanvasWidth = width;
             CanvasState.CanvasHeight = height;
 

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaintSharp.WPF", "PaintShar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaintSharp.Core", "PaintSharp.Core\PaintSharp.Core.csproj", "{8D03514A-C826-4C52-B47D-DE276616C7FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintSharp.Tests", "PaintSharp.Tests\PaintSharp.Tests.csproj", "{AEC3A893-10D5-4B13-89A5-BB94638CFF45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8D03514A-C826-4C52-B47D-DE276616C7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D03514A-C826-4C52-B47D-DE276616C7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D03514A-C826-4C52-B47D-DE276616C7FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC3A893-10D5-4B13-89A5-BB94638CFF45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC3A893-10D5-4B13-89A5-BB94638CFF45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC3A893-10D5-4B13-89A5-BB94638CFF45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC3A893-10D5-4B13-89A5-BB94638CFF45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

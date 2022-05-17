@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Iwaneq.FileSystem.Systems;
+using Iwaneq.FileSystem.Systems.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PaintSharp.Core.Commands.OpenView;
 using PaintSharp.Core.Factories;
@@ -6,9 +8,14 @@ using PaintSharp.Core.Navigation;
 using PaintSharp.Core.Navigation.Interfaces;
 using PaintSharp.Core.Services;
 using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.Services.ServiceHelpers;
+using PaintSharp.Core.Services.ServiceHelpers.Interfaces;
 using PaintSharp.Core.State.ToolStateHelpers;
+using PaintSharp.Core.State.ToolStateHelpers.ChangeToolTypeHelpers;
 using PaintSharp.Core.ViewModels;
 using PaintSharp.Core.ViewModels.Layers;
+using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers;
+using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers.Interfaces;
 using PaintSharp.Core.ViewModels.Tools;
 using PaintSharp.WPF.Services;
 using System;
@@ -41,8 +48,24 @@ namespace PaintSharp.WPF
         {
             IServiceCollection services = new ServiceCollection();
 
+            /*   ---   ADD FILE SYSTEMS   ---   */
+            services.AddSingleton<IFile, FileSystem>();
+            services.AddSingleton<IDirectory, DirectorySystem>();
+
             /*   ---   ADD SERVICE HELPERS   ---   */
+            //CHANGE TOOL HELPERS
             services.AddSingleton<IDrawDelegatesHelper, DrawDelegatesHelper>();
+            services.AddSingleton<ChangeToPenHelper>();
+            services.AddSingleton<ChangeToEraserHelper>();
+            services.AddSingleton<ChangeToSprayHelper>();
+            services.AddSingleton<ChangeToFloodFillHelper>();
+
+            services.AddSingleton<IToolStateChangerHelper, ToolStateChangerHelper>();
+
+            services.AddSingleton<ILayerCreatorHelper, LayerCreatorHelper>();
+            services.AddSingleton<IBitmapImageCreatorHelper, BitmapImageCreatorHelper>();
+
+            services.AddSingleton<IImageScalerHelper, ImageScalerHelper>();
 
 
             /*   ---   ADD BASIC SERVICES   ---   */

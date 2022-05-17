@@ -1,4 +1,5 @@
 ﻿using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.Services.ServiceHelpers.Interfaces;
 using PaintSharp.Core.State;
 using PaintSharp.Core.ViewModels.Layers;
 using System;
@@ -15,12 +16,14 @@ namespace PaintSharp.Core.Services
     public class AddLayerService : IAddLayerService
     {
         private readonly IChangeLayerVisibilityService _changeLayerVisibilityService;
+        private readonly ILayerCreatorHelper _layerCreatorHelper;
 
         #region Constructor / Setup
 
-        public AddLayerService(IChangeLayerVisibilityService changeLayerVisibilityService)
+        public AddLayerService(IChangeLayerVisibilityService changeLayerVisibilityService, ILayerCreatorHelper layerCreatorHelper)
         {
             _changeLayerVisibilityService = changeLayerVisibilityService;
+            _layerCreatorHelper = layerCreatorHelper;
         }
 
         #endregion
@@ -32,11 +35,11 @@ namespace PaintSharp.Core.Services
             LayerViewModel layer;
             if (isLayerTransparent)
             {
-                layer = new LayerViewModel(Colors.Transparent);
+                layer = _layerCreatorHelper.CreateLayer();
             }
             else
             {
-                layer = new LayerViewModel(background); 
+                layer = _layerCreatorHelper.CreateLayer(background); 
             }
 
             layer.Opacity = 100;
@@ -58,11 +61,16 @@ namespace PaintSharp.Core.Services
             LayerViewModel layer;
             if (isLayerTransparent)
             {
-                layer = new LayerViewModel(Colors.Transparent);
+                layer = _layerCreatorHelper.CreateLayer();
             }
             else
             {
-                layer = new LayerViewModel(background);
+                layer = _layerCreatorHelper.CreateLayer(background);
+            }
+
+            if(opacity < 0 || opacity > 100)
+            {
+                throw new ArgumentOutOfRangeException("opacity");
             }
 
             layer.Opacity = opacity;
@@ -80,9 +88,15 @@ namespace PaintSharp.Core.Services
         public void AddImageLayer(string name, BitmapSource background, float opacity, bool autoScale)
         {
             //Create ImageLayer of given size and with given background, and scale it if autoScale is true
-            ImageLayerViewModel layer = new ImageLayerViewModel(background, autoScale);
+            ImageLayerViewModel layer = _layerCreatorHelper.CreateImageLayer(background, autoScale);
+
+            if (opacity < 0 || opacity > 100)
+            {
+                throw new ArgumentOutOfRangeException("opacity");
+            }
 
             layer.Opacity = opacity;
+
             LayerState.Layers.Add(layer);
 
             //Create LayerTab and wire it to Layer
