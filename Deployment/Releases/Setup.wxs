@@ -1,0 +1,39 @@
+﻿<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <Product Id="*" Name="PaintSharp Machine-Wide Installer" Language="1033" Codepage="1252" Version="!(bind.FileVersion.PaintSharp.exe)" UpgradeCode="7325a34f-2cb0-5c6e-9965-7972945decaa" Manufacturer="Kuba &apos;Iwan&apos; Iwański">
+
+    <Package Description="#Description" Comments="Comments" InstallerVersion="200" Compressed="yes"/>
+		<Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high"/>
+
+    <PropertyRef Id="NETFRAMEWORK45" />
+
+    <Condition Message="This application requires .NET Framework 4.5 or higher. Please install the latest .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="APPLICATIONROOTDIRECTORY" Name="PaintSharp Installer" />
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="PaintSharp.exe" Guid="7ec6dda8-7d05-56c2-8082-146e6f130910">
+        <File Id="PaintSharp.exe" Name="PaintSharp.exe" Source="./Setup.exe" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="RegistryEntries" Guid="e5b8e972-2787-57d3-b82e-e94506cea555">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Run">
+          <RegistryValue Type="expandable" Name="PaintSharpMachineInstaller" Value="%ProgramFiles%\PaintSharp Installer\PaintSharp.exe --checkInstall" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="MainApplication" Title="Main Application" Level="1">
+      <ComponentRef Id="PaintSharp.exe" />
+      <ComponentRef Id="RegistryEntries" />
+    </Feature>
+  </Product>
+</Wix>
+

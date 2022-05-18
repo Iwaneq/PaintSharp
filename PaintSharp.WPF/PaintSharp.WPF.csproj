@@ -28,7 +28,12 @@
     <PackageReference Include="HandyControl" Version="3.3.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="NuGet.CommandLine" Version="6.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+    <PackageReference Include="squirrel.windows" Version="1.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,5 +49,25 @@
   <ItemGroup>
     <Folder Include="Commands\" />
   </ItemGroup>
+
+  <!-- SQUIRREL's DEPLOYMENT STUFF-->
+  <PropertyGroup>
+    <NugetTools>$(PkgNuGet_CommandLine)\tools</NugetTools>
+    <SquirrelTools>$(Pkgsquirrel_windows)\tools</SquirrelTools>
+  
+    <Version>1.0.0</Version>
+
+    <NuspecFile>$(SolutionDir)PaintSharp.WPF\ReleaseSpec.nuspec</NuspecFile>
+  </PropertyGroup>
+
+  <Target Name="GenerateRelease" AfterTargets="AfterBuild" Condition="$(Configuration) == Release">
+    <XmlPeek XmlInputPath="$(NuspecFile)" Query="/package/metadata/id/text()">
+      <Output TaskParameter="Result" ItemName="ID" />
+    </XmlPeek>
+  
+    <Exec Command="$(NugetTools)\NuGet.exe pack $(NuspecFile) -Version $(Version) -Properties Configuration=Release -OutputDirectory $(SolutionDir)Deployment\GeneratedNugets" />
+  
+    <Exec Command="$(SquirrelTools)\Squirrel.exe --releasify $(SolutionDir)Deployment\GeneratedNugets\@(ID).$(Version).nupkg --releaseDir=$(SolutionDir)Deployment\Releases" />
+  </Target>
 
 </Project>

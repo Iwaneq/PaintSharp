@@ -18,6 +18,7 @@ using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers;
 using PaintSharp.Core.ViewModels.Layers.LayerViewModelHelpers.Interfaces;
 using PaintSharp.Core.ViewModels.Tools;
 using PaintSharp.WPF.Services;
+using Squirrel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -33,7 +34,7 @@ namespace PaintSharp.WPF
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             IServiceProvider serviceProvider = CreateServiceProvider();
 
@@ -42,6 +43,8 @@ namespace PaintSharp.WPF
             window.Show();
 
             base.OnStartup(e);
+
+            await serviceProvider.GetRequiredService<IUpdateService>().CheckForUpdates();
         }
 
         private IServiceProvider CreateServiceProvider()
@@ -81,6 +84,7 @@ namespace PaintSharp.WPF
             services.AddSingleton<IOpenWindowService, OpenWindowService>();
             services.AddSingleton<IMessageBoxService, MessageBoxService>();
             services.AddSingleton<ISaveCanvasService, SaveCanvasService>();
+            services.AddSingleton<IUpdateService, UpdateService>();
 
 
             /*   ---   ADD ADD/CREATE MESSAGE VIEW MODELS   ---   */

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>PaintSharp</id>
+    <version>0.0.0</version>
+    <title>PaintSharp</title>
+    <authors>Kuba 'Iwan' Iwański</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/Iwaneq/PaintSharp</projectUrl>
+    <description>Windows Paint, but... Sharper!</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>Tag1 Tag2</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\net6.0-windows\**" target="lib\net45"/>
+  </files>
+</package>
