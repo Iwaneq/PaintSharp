@@ -102,6 +102,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                 ItemsSource="{Binding Layers}"
+                MouseDoubleClick="ListBox_MouseDoubleClick"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 SelectedItem="{Binding SelectedLayer}"
                 Style="{StaticResource BaseStyle}" />

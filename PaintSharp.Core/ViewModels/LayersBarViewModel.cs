@@ -27,13 +27,12 @@ namespace PaintSharp.Core.ViewModels
             }
         }
 
-        private LayerTabViewModel _selectedLayer;
         public LayerTabViewModel SelectedLayer
         {
-            get { return _selectedLayer; }
+            get { return LayerState.CurrentLayerTab; }
             set 
             {
-                _selectedLayer = value; 
+                LayerState.CurrentLayerTab = value; 
                 OnPropertyChanged(nameof(SelectedLayer));
             }
         }

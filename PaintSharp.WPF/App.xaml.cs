@@ -44,7 +44,11 @@ namespace PaintSharp.WPF
 
             base.OnStartup(e);
 
-            await serviceProvider.GetRequiredService<IUpdateService>().CheckForUpdates();
+            //If Application isn't in debug mode, check for Updates
+            if (!System.Diagnostics.Debugger.IsAttached)
+            {
+                await serviceProvider.GetRequiredService<IUpdateService>().CheckForUpdates(); 
+            }
         }
 
         private IServiceProvider CreateServiceProvider()

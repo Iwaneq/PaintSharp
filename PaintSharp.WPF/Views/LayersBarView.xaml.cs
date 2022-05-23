@@ -44,5 +44,12 @@ namespace PaintSharp.WPF.Views
         }
 
         #endregion
+
+        private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var listBox = (ListBox)sender;
+
+            listBox.UnselectAll();
+        }
     }
 }

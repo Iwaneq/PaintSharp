@@ -116,15 +116,21 @@ namespace PaintSharp.WPF.Views.Layers
 
         private void UserControl_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            LayerMoveState.IsRightButtonPressed = true;
-            clickPosition = e.GetPosition(this);
-            CaptureMouse();
+            if(LayerState.CurrentLayerTab != null)
+            {
+                LayerMoveState.IsRightButtonPressed = true;
+                clickPosition = e.GetPosition(this);
+                CaptureMouse();
+            }
         }
 
         private void UserControl_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            LayerMoveState.IsRightButtonPressed = false;
-            ReleaseMouseCapture();
+            if (LayerState.CurrentLayerTab != null)
+            {
+                LayerMoveState.IsRightButtonPressed = false;
+                ReleaseMouseCapture();
+            }
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)

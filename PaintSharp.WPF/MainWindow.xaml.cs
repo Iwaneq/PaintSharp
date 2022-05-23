@@ -1,4 +1,5 @@
 ﻿using PaintSharp.Core.Services.Interfaces;
+using PaintSharp.Core.State;
 using PaintSharp.Core.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,10 @@ namespace PaintSharp.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool rightButtonClicked = false;
+        private Point clickPosition;
+        private ScaleTransform _mainGridScaleTransform;
+        private TranslateTransform _mainGridTranslateTransform;
         private readonly ISaveCanvasService _saveCanvasService;
         public MainViewModel ViewModel 
         {
@@ -38,6 +43,16 @@ namespace PaintSharp.WPF
             InitializeComponent();
 
             _saveCanvasService = saveCanvasService;
+
+            var transformGroup = new TransformGroup();
+            _mainGridScaleTransform = new ScaleTransform();
+            _mainGridTranslateTransform = new TranslateTransform();
+
+            transformGroup.Children.Add(_mainGridScaleTransform);
+            transformGroup.Children.Add(_mainGridTranslateTransform);
+
+            MainGrid.RenderTransform = transformGroup;
+
         } 
 
         #endregion
@@ -81,6 +96,73 @@ namespace PaintSharp.WPF
         ~MainWindow()
         {
             ViewModel.OnCanvasSave -= ViewModel_OnCanvasSave;
+        }
+
+        /// <summary>
+        /// Event for Scaling Canvas by Mouse Scroll
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            
+
+            if (e.Delta > 0)
+            {
+                _mainGridScaleTransform.ScaleX *= 1.2;
+                _mainGridScaleTransform.ScaleY *= 1.2;
+            }
+            else
+            {
+                _mainGridScaleTransform.ScaleX /= 1.2;
+                _mainGridScaleTransform.ScaleY /= 1.2;
+            }
+        }
+
+        /// <summary>
+        /// Event for enabling Canvas Move
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (LayerState.CurrentLayerTab == null)
+            {
+                rightButtonClicked = true;
+                clickPosition = e.GetPosition((UIElement)MainGrid.Parent);
+                MainGrid.CaptureMouse();
+            }
+        }
+
+        /// <summary>
+        /// Event for disabling Canvas Move
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (LayerState.CurrentLayerTab == null)
+            {
+                rightButtonClicked = false;
+                MainGrid.ReleaseMouseCapture();
+            }
+        }
+
+        /// <summary>
+        /// Event for Canvas Move
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (rightButtonClicked)
+            {
+                var parent = MainGrid.Parent;
+                Point currentPoint = e.GetPosition((UIElement)parent);
+
+                _mainGridTranslateTransform.X = currentPoint.X - clickPosition.X;
+                _mainGridTranslateTransform.Y = currentPoint.Y - clickPosition.Y;
+            }
         }
     }
 }

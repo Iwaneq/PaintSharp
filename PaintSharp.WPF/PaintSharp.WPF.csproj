@@ -58,6 +58,8 @@
     <Version>1.0.0</Version>
 
     <NuspecFile>$(SolutionDir)PaintSharp.WPF\ReleaseSpec.nuspec</NuspecFile>
+
+    <AssemblyName>PaintSharp</AssemblyName>
   </PropertyGroup>
 
   <Target Name="GenerateRelease" AfterTargets="AfterBuild" Condition="$(Configuration) == Release">

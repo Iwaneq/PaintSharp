@@ -54,7 +54,7 @@
         </Grid.RowDefinitions>
 
         <!--#region WINDOW CHROME-->
-        <Grid Background="{StaticResource SecondaryBrush}">
+        <Grid Panel.ZIndex="10" Background="{StaticResource SecondaryBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
@@ -114,7 +114,13 @@
         </Grid>
         <!--#endregion-->
 
-        <Grid Grid.Row="1">
+        <Grid
+            Grid.Row="1"
+            Panel.ZIndex="-30"
+            MouseMove="MainGrid_MouseMove"
+            MouseRightButtonDown="MainGrid_MouseRightButtonDown"
+            MouseRightButtonUp="MainGrid_MouseRightButtonUp"
+            MouseWheel="Grid_MouseWheel">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
@@ -130,9 +136,11 @@
 
             <!--#region MAIN CANVAS-->
             <Grid
+                Name="MainGrid"
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
+                Panel.ZIndex="-50"
                 Background="Transparent">
                 <Border
                     Width="{Binding CanvasWidth}"
