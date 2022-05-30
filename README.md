@@ -35,7 +35,15 @@ If you want to work on graphics, you can do it with PaintSharp! Image Layers are
 </p>
 
 ## How to setup PaintSharp?
-TODO...
+### What do I need to install PaintSharp?
+Everything you need is just .NET 6.0 Runtime, in case you don't have it already installed. PaintSharp is only avaible for Windows (7/8/10/11).
+
+### How to install PaintSharp?
+In this GitHub repo you can download any release you want. The most recommended is of corse the latest one. Just fo to [Releases Page](https://github.com/Iwaneq/PaintSharp/releases) and download Setup.exe. Application should download after you open this file. It may take couple of minutes and it's worth pointing out, that installation happens in background, so you'll don't see any installation wizards.  
+
+When installation will end successfully, PaintSharp icon will appear on your desktop.
+
+![image](https://user-images.githubusercontent.com/27814917/170941106-ed7f0991-2c15-4c16-bea6-71ae5aa87803.png)
 
 ## Contributing
 PaintSharp is just my side project, some kind of DEMO App, but if you want to contribute to it, feel free to do it!
